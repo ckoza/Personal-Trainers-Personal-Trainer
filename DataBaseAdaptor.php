@@ -1,6 +1,7 @@
  <?php
 	
 	// to use methods, call: require_once './DataBaseAdaptor.php';
+	// then call $myDatabaseFunctions->someFunction();
 	class DatabaseAdaptor {
 		private $DB;
 		public function __construct() {

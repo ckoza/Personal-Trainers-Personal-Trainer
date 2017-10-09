@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="style.css" type="text/css" rel="stylesheet" >
+<title>Personal Assistants Personal Assistant </title>
+</head>
+<body>
+<div class="login">
+<h1 style="color:#10155e;">Login</h1>
+
+<input style="width:200px; margin:10px;" type="text" placeholder="User Name" id="UserName"/>
+<br>
+
+<input style="width:200px; margin:10px;" type="password" placeholder="Password" id="Password"/>
+<br>
+
+<Button style="width:210px; margin:10px;" onclick="logincheck()">Submit</Button>
+</div>
+
+
+</body>
+
+
+<script>
+
+function logincheck(){
+	var name = document.getElementById('UserName').value;
+	var password = document.getElementById('Password').value;
+	
+	if(name == "" || password == ""){
+		alert("Please Enter User Name and Password");
+		return;
+	}
+	
+	console.log(name + " : " + password);
+	
+	window.location.href = "Main.html";
+	
+}
+
+function work(){
+	var x = parseInt(document.getElementById('xVal').value);
+	var y = parseInt(document.getElementById('yVal').value);
+	var add;
+	var sub;
+	var mult;
+	var div;
+	var mod;
+	
+	add = x + " + " + y + " = " + (x+y);
+	sub = x + " - " + y + " = " +(x-y);
+	mult = x + " * " + y + " = " +(x*y);
+	div = x + " / " + y + " = " +(x/y);
+	mod = x + " % " + y + " = " +(x%y);
+	
+	document.getElementById('vis').style.visibility="visible";
+	document.getElementById("add").innerHTML = add;
+	document.getElementById("sub").innerHTML = sub;
+	document.getElementById("mult").innerHTML = mult;
+	document.getElementById("divide").innerHTML = div;
+	document.getElementById("mod").innerHTML = mod;
+	
+	
+}
+</script>
+</html>

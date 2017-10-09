@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset=utf-8" />
+  <title>Traditional Calendar in d3.js</title>
+</head>
+<body>
+  <div id="chart"> </div>
+   <script src="http://mbostock.github.com/d3/d3.js?2.10.2"></script>
+   <script>
+     var margin = {top: 49, right: 20, bottom: 20, left: 19},
+         width = 960 - margin.right - margin.left, // width
+         height = 136 - margin.top - margin.bottom, // height
+         cellSize = 17,
+         year = 2012; 
+     var day = d3.time.format("%w"),
+         week = d3.time.format("%U"),
+         percent = d3.format(".1%"),
+         format = d3.time.format("%Y-%m-%d"),
+         monthName = d3.time.format("%B"),
+         months= d3.time.months(new Date(year, 0), new Date(year + 1, 0));
+     var svg = d3.select("#chart").selectAll("svg")
+         .data(months)
+         .enter().append("svg")
+           .attr("width", width + margin.right + margin.left)
+           .attr("height", height + margin.top + margin.bottom)
+           .attr("class", "RdYlGn")
+         .append("g")
+           .attr("transform", "translate(" + (margin.left + (width - cellSize * 7) / 2) + "," + (margin.top + (height - cellSize * 6) / 2) + ")");
+     svg.append("text")
+       .attr("transform", "translate(" + (cellSize * 7)/2 + ", -" +  height/4 + ")")
+       .attr("text-anchor", "middle")
+       .text(monthName);
+     var rect = svg.selectAll("rect.day")
+         .data(function(d, i) { return d3.time.days(d, new Date(d.getFullYear(), d.getMonth()+1, 1)); })
+         .enter().append("rect")
+           .attr("class", "day")
+           .attr("width", cellSize)
+           .attr("height", cellSize)
+           .attr("x", function(d) { return day(d) * cellSize; })
+           .attr("y", function(d) { return (week(d) - week(new Date(d.getFullYear(),d.getMonth(),1))) * cellSize; })
+           .datum(format);
+   </script>
+</body>
+</html>

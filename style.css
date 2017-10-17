@@ -101,3 +101,8 @@ table{
 td{
 	 padding: 5px 0;
 }
+
+#src{
+	width: 600px;
+	height: 500px;
+}

@@ -1,0 +1,68 @@
+.main{
+	padding: 0px;
+	width: 150px;
+	height: 700px;
+	border:2px solid #10155e;
+	margin: 0;
+	float: left;
+}
+
+.headfoot{
+	background-color: blue;
+	color: white;
+	text-align: center;
+	margin: 0;
+}
+
+
+.body{
+	width: 1000px;
+}
+
+iframe{
+	height: 700px;
+	width: 840px;
+	margin: 0;
+	overflow: hidden;
+}
+
+.main button{
+	margin: 10px;
+	background-color: white;
+	border: 2px solid #c8c8c8;
+	border-radius: 5px;
+
+}
+
+.entEx div{
+	border:2px solid red;
+	background-color: pink;
+	height: 20px;
+	width: 120px;
+	margin: 10px;
+	text-align: center;
+}
+#pic{
+	height: 40px;
+	width: 60px;
+	float: left;
+}
+
+.pix p{
+	font-size: 10px;
+}
+#id{
+	margin-left: 25px;
+}
+
+div{
+	border:6px solid #10155e;
+	width: 400px;
+	height: 400px;
+	text-align: center;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 100px;	
+	background-color: #fdb813;
+	padding-top: 150px;
+}

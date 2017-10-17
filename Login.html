@@ -12,71 +12,28 @@
 		<?php
 			session_start();
 		?>
-		
+
 		<div class='container'>
 			<form action="controller.php" method="post">
-				<span class="labels">Username: </span><input type="text"
-					name="username" pattern=".{1,}" required>
-				<p></p>
-				<span class="labels">&nbsp;Password: </span><input type="password"
-					name="password" pattern=".{1,}" required>
-				<p></p>
-				<input type="hidden" name="action" value="login">
-				<input type="submit" name="submit" value="Login">
+				<input style="width: 200px; margin: 10px;" type="text"
+					placeholder="User Name" name="username" pattern=".{1,}" required>
+				<input style="width: 200px; margin: 10px;" type="password"
+					placeholder="Password" name="password" pattern=".{1,}" required>
+				<input type="hidden" name="action" value="login"> <input
+					style="width: 210px; margin: 10px;" type="submit" name="submit"
+					value="Login">
 			</form>
+
+			<Button style="width: 110px; margin: 10px; color: blue">google</Button>
+			<br><br><br><br><br>
+			<button onclick="addNewUser()">add new user</button>
 		</div>
 	</div>
 </body>
 
-<!-- <script>
-
-function logincheck(){
-	var name = document.getElementById('UserName').value;
-	var password = document.getElementById('Password').value;
-	
-	if(name == "" || password == ""){
-		alert("Please Enter User Name and Password");
-		return;
+<script>
+	function addNewUser() {
+		window.location.href = "newClient.html";
 	}
-	
-	if ($myDatabaseFunctions->verified($user, $pwd)){
-		$myDatabaseFunctions->login();
-		header("Location: ./index.php?mode=showQuotes" );
-	}
-	else {
-		$_SESSION['errorMessage'] = "Invalid Account/Password";
-		header("Location: ./index.php?mode=login" );
-	}
-	
-	console.log(name + " : " + password);
-	
-	window.location.href = "Main.html";
-	
-}
-
-function work(){
-	var x = parseInt(document.getElementById('xVal').value);
-	var y = parseInt(document.getElementById('yVal').value);
-	var add;
-	var sub;
-	var mult;
-	var div;
-	var mod;
-	
-	add = x + " + " + y + " = " + (x+y);
-	sub = x + " - " + y + " = " +(x-y);
-	mult = x + " * " + y + " = " +(x*y);
-	div = x + " / " + y + " = " +(x/y);
-	mod = x + " % " + y + " = " +(x%y);
-	
-	document.getElementById('vis').style.visibility="visible";
-	document.getElementById("add").innerHTML = add;
-	document.getElementById("sub").innerHTML = sub;
-	document.getElementById("mult").innerHTML = mult;
-	document.getElementById("divide").innerHTML = div;
-	document.getElementById("mod").innerHTML = mod;
-	
-	
-}
-</script> -->
+</script>
 </html>

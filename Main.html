@@ -15,6 +15,9 @@
 <button onclick="newClient()">Add New Client</button>
 <button onclick="calendar()">View Calender</button>
 <button onclick="examples()">View Examples</button>
+<form action="controller.php" method="post">
+<button name="action" value="logout">Log Out</button>
+</form>
 <script>
 function clients(){
 	document.getElementById('section').src = "Clients.html";

@@ -25,13 +25,13 @@
 			return $stmt->fetchAll ( PDO::FETCH_ASSOC );
 		}
 		// for login page
-		// requires using session_start();
 		public function login() {
 			$_SESSION ['user'] = $user;
 			$_SESSION ['login'] = true;
 		}
 		// for login page
 		public function logout() {
+			$_SESSION ['user'] = '';
 			$_SESSION ['login'] = false;
 		}
 		// used to see if trainer username already exists.
@@ -66,6 +66,4 @@
 	}
 	
 	$myDatabaseFunctions = new DatabaseAdaptor ();
-	//$myDatabaseFunctions->registerTrainer('Dee Fault', '12345', 'myemail@company.com');
-	//assert (!$myDatabaseFunctions->canRegisterTrainer('blah'));
 	?>

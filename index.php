@@ -8,17 +8,19 @@
 </head>
 <body class="body">
 	<?php
+	session_start();
+	
 if (isset ( $_GET ['mode'] )) {
-  if ($_GET ['mode'] === 'clients')
-    require_once ("./Clients.html");
-  elseif ($_GET ['mode'] === 'examples')
-    require_once ("./Examples.html");
+  if ($_GET ['mode'] === 'register')
+    require_once ("./RegisterTrainer.html");
   elseif ($_GET ['mode'] === 'login')
     require_once ("./Login.html");
   elseif ($_GET ['mode'] === 'main')
     require_once ("./Main.html");
-} else // default
-  require_once ("./Login.html");
+} else { // default
+	$_SESSION['errorMessage'] = '';
+	require_once ("./Login.html");
+}
 
 ?>
 </body>

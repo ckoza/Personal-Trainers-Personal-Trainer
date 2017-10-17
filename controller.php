@@ -16,8 +16,28 @@ if (isset ( $_POST ['username'] ) && isset ( $_POST ['password'] )) {
 			$myDatabaseFunctions->login ();
 			header ( "Location: ./index.php?mode=main" );
 		} else {
+			$_SESSION['errorMessage'] = "Invalid Account/Password";
 			header ( "Location: ./index.php?mode=login" );
 		}
 	}
+	
+	if ($action === 'register'){
+		$email = $_POST['email'];
+		if ($myDatabaseFunctions->canRegisterTrainer($user)){
+			$myDatabaseFunctions->registerTrainer($user, $pwd, $email);
+			header("Location: ./index.php?mode=main" );
+		} else {
+			$_SESSION['errorMessage'] = "Account already exists";
+			header("Location: ./index.php?mode=register" );
+		}
+	}
 }
+
+// logout
+else {
+	if ($action === 'logout'){
+		$myDatabaseFunctions->logout();
+	}
+	header ( "Location: ./index.php?mode=login" );
+} 
 ?>

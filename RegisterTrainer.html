@@ -7,7 +7,7 @@
 </head>
 <body>
 	<div class="login">
-		<h1 style="color: #10155e;">Login</h1>
+		<h1 style="color: #10155e;">Register</h1>
 
 		<div class='container'>
 			<form action="controller.php" method="post">
@@ -15,24 +15,17 @@
 					placeholder="User Name" name="username" pattern=".{1,}" required>
 				<input style="width: 200px; margin: 10px;" type="password"
 					placeholder="Password" name="password" pattern=".{1,}" required>
-				<input type="hidden" name="action" value="login"> <input
+				<input style="width: 200px; margin: 10px;" type="email"
+					placeholder="Email" name="email" required>
+				<input type="hidden" name="action" value="register"> <input
 					style="width: 210px; margin: 10px;" type="submit" name="submit"
-					value="Login">
+					value="Register">
 			</form>
 
-			<Button style="width: 110px; margin: 10px; color: blue">google</Button><br>
 			<?php
 				echo PHP_EOL . $_SESSION['errorMessage'] . PHP_EOL;
 			?>
-			<br><br><br><br>
-			<button onclick="addNewUser()">add new user</button>
+			
 		</div>
 	</div>
 </body>
-
-<script>
-	function addNewUser() {
-		window.location.href = "RegisterTrainer.html";
-	}
-</script>
-</html>

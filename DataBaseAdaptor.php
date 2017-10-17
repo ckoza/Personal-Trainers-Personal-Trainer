@@ -5,9 +5,9 @@
 	class DatabaseAdaptor {
 		private $DB;
 		public function __construct() {
-			$db = 'mysql:dbname=myDB;host=ptpa.c2ihxd5ursch.us-west-1.rds.amazonaws.com';
-			$user = 'root2';
-			$password = '12345678';
+			$db = 'mysql:dbname=PTPA_DATABASE;host=127.0.0.1';
+			$user = 'root';
+			$password = '';
 			
 			try {
 				$this->DB = new PDO ( $db, $user, $password );
@@ -40,7 +40,7 @@
 			$stmt = $this->DB->prepare ( "SELECT user_name FROM trainers" );
 			$stmt->execute ();
 			$userArray = $stmt->fetchAll ( PDO::FETCH_COLUMN );
-			foreach ( $userArray as $name ) {
+			foreach ( $userArray as $user_name ) {
 				if (in_array ( $user, $userArray ))
 					return false;
 			}
@@ -66,4 +66,6 @@
 	}
 	
 	$myDatabaseFunctions = new DatabaseAdaptor ();
+	//$myDatabaseFunctions->registerTrainer('Dee Fault', '12345', 'myemail@company.com');
+	//assert (!$myDatabaseFunctions->canRegisterTrainer('blah'));
 	?>

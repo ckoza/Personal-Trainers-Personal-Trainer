@@ -2,27 +2,33 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="style.css" type="text/css" rel="stylesheet" >
-<title>Personal Assistants Personal Assistant </title>
+<link href="style.css" type="text/css" rel="stylesheet">
+<title>Personal Assistants Personal Assistant</title>
 </head>
 <body>
-<div class="login">
-<h1 style="color:#10155e;">Login</h1>
+	<div class="login">
+		<h1 style="color: #10155e;">Login</h1>
 
-<input style="width:200px; margin:10px;" type="text" placeholder="User Name" id="UserName"/>
-<br>
-
-<input style="width:200px; margin:10px;" type="password" placeholder="Password" id="Password"/>
-<br>
-
-<Button style="width:210px; margin:10px;" onclick="logincheck()">Submit</Button>
-</div>
-
-
+		<?php
+			session_start();
+		?>
+		
+		<div class='container'>
+			<form action="controller.php" method="post">
+				<span class="labels">Username: </span><input type="text"
+					name="username" pattern=".{1,}" required>
+				<p></p>
+				<span class="labels">&nbsp;Password: </span><input type="password"
+					name="password" pattern=".{1,}" required>
+				<p></p>
+				<input type="hidden" name="action" value="login">
+				<input type="submit" name="submit" value="Login">
+			</form>
+		</div>
+	</div>
 </body>
 
-
-<script>
+<!-- <script>
 
 function logincheck(){
 	var name = document.getElementById('UserName').value;
@@ -31,6 +37,15 @@ function logincheck(){
 	if(name == "" || password == ""){
 		alert("Please Enter User Name and Password");
 		return;
+	}
+	
+	if ($myDatabaseFunctions->verified($user, $pwd)){
+		$myDatabaseFunctions->login();
+		header("Location: ./index.php?mode=showQuotes" );
+	}
+	else {
+		$_SESSION['errorMessage'] = "Invalid Account/Password";
+		header("Location: ./index.php?mode=login" );
 	}
 	
 	console.log(name + " : " + password);
@@ -63,5 +78,5 @@ function work(){
 	
 	
 }
-</script>
+</script> -->
 </html>

@@ -1,5 +1,5 @@
  <?php
-	
+
 	// to use methods, call: require_once './DataBaseAdaptor.php';
 	// then call $myDatabaseFunctions->someFunction();
 	class DatabaseAdaptor {
@@ -8,7 +8,7 @@
 			$db = 'mysql:dbname=PTPA_DATABASE;host=127.0.0.1';
 			$user = 'root';
 			$password = '';
-			
+
 			try {
 				$this->DB = new PDO ( $db, $user, $password );
 				$this->DB->setAttribute ( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
@@ -64,6 +64,6 @@
 			return password_verify ( $pwd, $hash [0] );
 		}
 	}
-	
+
 	$myDatabaseFunctions = new DatabaseAdaptor ();
 	?>

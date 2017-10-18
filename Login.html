@@ -2,6 +2,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="google-signin-client_id" content="1019396401836-pb91nphffsjarbkstvhd8vuuukgv199c.apps.googleusercontent.com">
+<script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
 <link href="style.css" type="text/css" rel="stylesheet">
 <title>Personal Assistants Personal Assistant</title>
 </head>
@@ -19,15 +21,54 @@
 					style="width: 210px; margin: 10px;" type="submit" name="submit"
 					value="Login">
 			</form>
+ <div style="margin:12px">
+ <div id="my-signin2"; style="margin:auto; width: 55%"></div></div>
+  <script>
+    function onSuccess(googleUser) {
+      console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+    }
+    function onFailure(error) {
+      console.log(error);
+    }
+    function renderButton() {
+      gapi.signin2.render('my-signin2', {
+        'scope': 'profile email',
+        'width': 210,
+        'height': 30,
+        'longtitle': true,
+        'theme': 'light',
+        'onsuccess': onSuccess,
+        'onfailure': onFailure
+      });
+    }
+  </script>
+			<Button style="width: 110px; margin: 10px; color: black"; onclick="signOut();">Sign out</Button><br>
+  <script>
+  function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      console.log('User signed out.');
+    });
+  }
+</script>
 
-			<Button style="width: 110px; margin: 10px; color: blue">google</Button><br>
-			<?php
+
+
+
+
+
+		</div>
+
+
+
+
+					<?php
 				echo PHP_EOL . $_SESSION['errorMessage'] . PHP_EOL;
 			?>
-			<br><br><br><br>
-			<button onclick="addNewUser()">add new user</button>
-		</div>
+
+			<button style="width: 110px; margin: 10px; color: black"; onclick="addNewUser()">add new user</button>
 	</div>
+
 </body>
 
 <script>

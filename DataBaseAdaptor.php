@@ -5,9 +5,9 @@
 	class DatabaseAdaptor {
 		private $DB;
 		public function __construct() {
-			$db = 'mysql:dbname=PTPA_DATABASE;host=127.0.0.1';
+			$db = 'mysql:dbname=PTPA_DATABASE;host=ptpa.c2ihxd5ursch.us-west-1.rds.amazonaws.com:3306';
 			$user = 'root';
-			$password = '';
+			$password = '12345678';
 
 			try {
 				$this->DB = new PDO ( $db, $user, $password );

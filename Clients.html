@@ -35,11 +35,11 @@ var data = [
 <div>
 <table id="clients">
 <tr>
-<th>First Name</th>
-<th>Last Name</th>
-<th>Sex</th>
-<th>DOB</th>
-<th>Weight</th>
+<th>First Name &nbsp;&nbsp;</th>
+<th>Last Name &nbsp;&nbsp;</th>
+<th>Sex &nbsp;</th>
+<th>DOB &nbsp;</th>
+<th>Weight &nbsp;</th>
 <th>Select</th>
 </tr>
 </table>
@@ -72,8 +72,8 @@ var data = [
 		cell3.innerHTML = data[ds].DOB;
 		cell4.innerHTML = data[ds].Weight;
 		
-		//cell5.id = "B_Row"+i;
-		cell5.innerHTML = "<Button onclick='RowClicked(this.id)'>View</Button>";
+		var button =  "<Button onclick='RowClicked(" + cell5.id + ")'>View</Button>";
+		cell5.innerHTML = button;
 		
 		//cell5.innerHTML = 
 		ds++;
@@ -84,8 +84,8 @@ var data = [
 
 <script type="text/javascript">
 function RowClicked(x){
-	//var x = document.getElementById('call').value;
 	console.log(x);
+	window.location.href = "Workout.html";
 }
 </script>
 

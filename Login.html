@@ -12,6 +12,10 @@
 		<h1 style="color: #10155e;">Login</h1>
 
 		<div class='container'>
+			<?php
+				echo PHP_EOL . $_SESSION['errorMessage'] . PHP_EOL;
+			?>
+		
 			<form action="controller.php" method="post">
 				<input style="width: 200px; margin: 10px;" type="text"
 					placeholder="User Name" name="username" pattern=".{1,}" required>
@@ -22,7 +26,7 @@
 					value="Login">
 			</form>
  <div style="margin:12px">
- <div id="my-signin2"; style="margin:auto; width: 55%"></div></div>
+ <div id="my-signin2" style="margin:auto; width: 55%"></div></div>
   <script>
     function onSuccess(googleUser) {
       console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
@@ -42,7 +46,7 @@
       });
     }
   </script>
-			<Button style="width: 110px; margin: 10px; color: black"; onclick="signOut();">Sign out</Button><br>
+			<Button style="width: 110px; margin: 10px; color: black" onclick="signOut();">Sign out</Button><br>
   <script>
   function signOut() {
     var auth2 = gapi.auth2.getAuthInstance();
@@ -52,21 +56,8 @@
   }
 </script>
 
-
-
-
-
-
 		</div>
-
-
-
-
-					<?php
-				echo PHP_EOL . $_SESSION['errorMessage'] . PHP_EOL;
-			?>
-
-			<button style="width: 110px; margin: 10px; color: black"; onclick="addNewUser()">add new user</button>
+			<button style="width: 110px; margin: 10px; color: black" onclick="addNewUser()">add new user</button>
 	</div>
 
 </body>

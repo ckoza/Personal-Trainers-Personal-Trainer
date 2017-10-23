@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+var data = [
+            {
+                "Date": "10/01/17",
+            	"Bench": 95,
+                "Squat": 115,
+                "Lat": 40
+            },
+            {
+            	"Date": "10/03/17",
+            	"Bench": 105,
+                "Squat": 135,
+                "Lat": 45
+            },
+            {
+            	"Date": "10/05/17",
+            	"Bench": 105,
+                "Squat": 140,
+                "Lat": 55
+            },
+            {
+            	"Date": "10/08/17",
+            	"Bench": 115,
+                "Squat": 155,
+                "Lat": 55
+            },
+            {
+            	"Date": "10/10/17",
+            	"Bench": 135,
+                "Squat": 200,
+                "Lat": 60
+            }
+            ];
+</script>
+<meta charset="UTF-8">
+<link href="style.css" type="text/css" rel="stylesheet" >
+<title>Insert title here</title>
+</head>
+<body>
+
+<table id="work">
+<tr>
+<th>&nbsp;&nbsp; Date &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+<th>Bench &nbsp;&nbsp;&nbsp;</th>
+<th>Squat &nbsp;&nbsp;&nbsp; </th>
+<th>Lat Pulls &nbsp;&nbsp; </th>
+</tr>
+</table>
+
+<script>
+    var ds = 0;
+	var s = data.length;
+	var table = document.getElementById("work");
+	for(var i = 0; i < s; i++){
+		
+		var row = table.insertRow(i+1);
+		row.id = "Row"+i;
+		
+		var call = row.id;
+		
+		var cell0 = row.insertCell(0);
+		var cell1 = row.insertCell(1);
+		var cell2 = row.insertCell(2);
+		var cell3 = row.insertCell(3);
+		
+		cell0.innerHTML = data[ds].Date;
+		cell1.innerHTML = data[ds].Bench;
+		cell2.innerHTML = data[ds].Squat;
+		cell3.innerHTML = data[ds].Lat;
+		
+		ds++;
+		
+		
+	}
+	
+</script>
+
+
+
+
+
+
+<script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+<script src="https://www.amcharts.com/lib/3/serial.js"></script>
+<script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+<script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+<div style="width:100%; height:500px;" id="chartdiv"></div>			
+
+<script>
+var chartData = generateChartData();
+
+var chart = AmCharts.makeChart("chartdiv", {
+    "type": "serial",
+    "theme": "light",
+    "legend": {
+        "useGraphSettings": true
+    },
+    "dataProvider": chartData,
+    "synchronizeGrid":true,
+    "valueAxes": [{
+        "id":"v1",
+        "axisColor": "#FF6600",
+        "axisThickness": 2,
+        "axisAlpha": 1,
+        "position": "left"
+    }, {
+        "id":"v2",
+        "axisColor": "#FCD202",
+        "axisThickness": 2,
+        "axisAlpha": 1,
+        "offset": 50,
+        "position": "left"
+    }, {
+        "id":"v3",
+        "axisColor": "#B0DE09",
+        "axisThickness": 2,
+        "gridAlpha": 0,
+        "offset": 100,
+        "axisAlpha": 1,
+        "position": "left"
+    }],
+    "graphs": [{
+        "valueAxis": "v1",
+        "lineColor": "#FF6600",
+        "bullet": "round",
+        "bulletBorderThickness": 1,
+        "hideBulletsCount": 30,
+        "title": "Bench",
+        "valueField": "Bench",
+		"fillAlphas": 0
+    }, {
+        "valueAxis": "v2",
+        "lineColor": "#FCD202",
+        "bullet": "square",
+        "bulletBorderThickness": 1,
+        "hideBulletsCount": 30,
+        "title": "Squat",
+        "valueField": "Squat",
+		"fillAlphas": 0
+    }, {
+        "valueAxis": "v3",
+        "lineColor": "#B0DE09",
+        "bullet": "triangleUp",
+        "bulletBorderThickness": 1,
+        "hideBulletsCount": 30,
+        "title": "Lat Pulls",
+        "valueField": "Lat",
+		"fillAlphas": 0
+    }],
+    "chartScrollbar": {},
+    "chartCursor": {
+        "cursorPosition": "mouse"
+    },
+    "categoryField": "date",
+    "categoryAxis": {
+        "parseDates": true,
+        "axisColor": "#DADADA",
+        "minorGridEnabled": true
+    }
+});
+
+chart.addListener("dataUpdated", zoomChart);
+zoomChart();
+
+
+// generate some random data, quite different range
+function generateChartData() {
+    var chartData = [];
+    var s = data.length;
+    var firstDate = new Date();
+    firstDate.setDate(firstDate.getDate() - 100);
+
+        var bench = data[0].Bench;
+        var squat = data[0].Squat;
+        var lat = data[0].Lat;
+
+    for (var i = 0; i < s; i++) {
+        // we create date objects here. In your data, you can have date strings
+        // and then set format of your dates using chart.dataDateFormat property,
+        // however when possible, use date objects, as this will speed up chart rendering.
+        var newDate = new Date(firstDate);
+        newDate.setDate(newDate.getDate() + i);
+
+        bench = data[i].Bench;
+        squat = data[i].Squat;
+        lat = data[i].Lat;
+
+        chartData.push({
+            date: newDate,
+            Bench: bench,
+            Squat: squat,
+            Lat: lat
+        });
+    }
+    return chartData;
+}
+
+function zoomChart(){
+    chart.zoomToIndexes(chart.dataProvider.length - 20, chart.dataProvider.length - 1);
+}
+</script>
+
+
+
+
+</body>
+</html>

@@ -40,10 +40,10 @@
 			$stmt = $this->DB->prepare ( "SELECT user_name FROM trainers" );
 			$stmt->execute ();
 			$userArray = $stmt->fetchAll ( PDO::FETCH_COLUMN );
-			foreach ( $userArray as $user_name ) {
+
 				if (in_array ( $user, $userArray ))
 					return false;
-			}
+
 			return true;
 		}
 		// used to register a new trainer

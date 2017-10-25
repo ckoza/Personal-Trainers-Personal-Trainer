@@ -1,5 +1,7 @@
 
 .body{
+	margin-right: auto;
+	margin-left: auto;
 	width: 1000px;
 }
 
@@ -11,7 +13,7 @@
 	text-align: center;
 	margin-right: auto;
 	margin-left: auto;
-	margin-top: 100px;	
+	margin-top: 100px;
 	background-color: #fdb813;
 	padding-top: 150px;
 }

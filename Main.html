@@ -4,8 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="google-signin-client_id" content="1019396401836-pb91nphffsjarbkstvhd8vuuukgv199c.apps.googleusercontent.com">
 <link href="mainStyle.css" type="text/css" rel="stylesheet" >
 <title>10 Events Index</title>
+<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
 </head>
 <body class="body">
 <header><h2 class="headfoot">Personal Trainers Personal Assistant</h2></header>
@@ -16,7 +18,7 @@
 <button onclick="calendar()">View Calender</button>
 <button onclick="examples()">View Examples</button>
 <form action="controller.php" method="post">
-<button name="action" value="logout">Log Out</button>
+<button href="Login.html" name="action" value="logout" onclick="signOut();" name="action" value="logout">Log Out</button>
 </form>
 <script>
 function clients(){
@@ -30,6 +32,21 @@ function calendar(){
 }
 function examples(){
 	document.getElementById('section').src = "Examples.html";
+}
+</script>
+
+<script>
+function onLoad() {
+		 gapi.load('auth2', function() {
+			 gapi.auth2.init();
+		 });
+	 }
+function signOut() {
+	var auth2 = gapi.auth2.getAuthInstance();
+	auth2.signOut().then(function () {
+		auth2.disconnect();  //revoke authorization, prevent auto-login
+		console.log('User signed out.');
+	});
 }
 </script>
 </div>

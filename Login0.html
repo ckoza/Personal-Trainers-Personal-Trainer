@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="google-signin-client_id" content="1019396401836-pb91nphffsjarbkstvhd8vuuukgv199c.apps.googleusercontent.com">
 <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
-<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link href="style.css" type="text/css" rel="stylesheet">
 <title>Personal Assistants Personal Assistant</title>
@@ -12,10 +11,12 @@
 <body>
 	<div class="login">
 		<h1 style="color: #10155e;">Login</h1>
+
 		<div class='container'>
 			<?php
 				echo PHP_EOL . $_SESSION['errorMessage'] . PHP_EOL;
 			?>
+
 			<form action="controller.php" method="post">
 				<input style="width: 200px; margin: 10px;" type="text"
 					placeholder="User Name" name="username" pattern=".{1,}" required>
@@ -26,53 +27,48 @@
 					value="Login">
 			</form>
  <div style="margin:12px">
+	<form name="detParameterForm" action="controller.php" method="post">
  <div id="my-signin2" style="margin:auto; width: 55%" ></div>
+ </form>
 </div>
   <script>
-	var name;
-	var email;
-	var action;
     function onSuccess(googleUser) {
       console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
 			console.log('The email is: ' + googleUser.getBasicProfile().getEmail());
-			 name=googleUser.getBasicProfile().getName();
-			 email=googleUser.getBasicProfile().getEmail();
-			 action='googleLogin';
-			 loadDoc();
-// var theForm = document.forms['detParameterForm'];
-// // Add data:
-// 				addHidden(theForm, 'username', name);
-// 				addHidden(theForm, 'email', email);
-// 				addHidden(theForm, 'action', action);
-//
-// // Submit the form:
-// 				theForm.submit();
-// //document.getElementById("myForm").submit();
-//
- }
- function loadDoc() {
-	 var xhttp = new XMLHttpRequest();
-	 xhttp.onreadystatechange = function() {
-		 if (this.readyState == 4 && this.status == 200) {
- //      document.getElementById("demo").innerHTML = this.responseText;
-  		console.log('The request is sucessful');
-			
- 			window.location='index.php?mode=main';
-		 }
-	 };
-	 xhttp.open("POST", "controller.php", true);
-	 xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	 xhttp.send("name="+name+"&email="+email+"&action="+action);
- }
+			var name=googleUser.getBasicProfile().getName();
+			var email=googleUser.getBasicProfile().getEmail();
+			var action='googleLogin';
+		//  onClick="javascript:this.parentNode.submit();"
+		// 	$.ajax({
+		// 		 type : "POST",  //type of method
+		// 		 url  : "controller.php",  //your page
+		// 		 data : { name : name, email : email, action : action },// passing the values
+		// 		 success: function(res){
+		// 				window.location.herf = "controller.php";						 //do what you want here...
+		// 						 }
+		//  });
+		// Form reference:
+var theForm = document.forms['detParameterForm'];
+// Add data:
+				addHidden(theForm, 'username', name);
+				addHidden(theForm, 'email', email);
+				addHidden(theForm, 'action', action);
 
- // function addHidden(theForm, key, value) {
- //     // Create a hidden input element, and append it to the form:
- //     var input = document.createElement('input');
- //     input.type = 'hidden';
- //     input.name = key; // 'the key/name of the attribute/field that is sent to the server
- //     input.value = value;
- //     theForm.appendChild(input);
- // }
+// Submit the form:
+				theForm.submit();
+//document.getElementById("myForm").submit();
+
+
+
+ }
+ function addHidden(theForm, key, value) {
+     // Create a hidden input element, and append it to the form:
+     var input = document.createElement('input');
+     input.type = 'hidden';
+     input.name = key; // 'the key/name of the attribute/field that is sent to the server
+     input.value = value;
+     theForm.appendChild(input);
+ }
 
     function onFailure(error) {
       console.log(error);
@@ -89,6 +85,18 @@
       });
     }
   </script>
+	<form action="controller.php" method="post">
+			<Button style="width: 110px; margin: 10px; color: black" onclick="signOut();" name="action" value="logout">Log Out</Button><br>
+	</form>
+  <script>
+  function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      console.log('User signed out.');
+    });
+  }
+</script>
+
 		</div>
 			<button style="width: 110px; margin: 10px; color: black" onclick="addNewUser()">add new user</button>
 	</div>

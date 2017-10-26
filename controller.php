@@ -3,9 +3,9 @@ require_once './DataBaseAdaptor.php';
 session_start ();
 
 $_SESSION ['errorMessage'] = "";
-
+// echo "what the !";
 // register and login
-if (isset ( $_POST ['username']) && isset ( $_POST ['email'] ) ){
+if (isset ( $_POST ['username']) && isset ( $_POST ['email'] ) && ($action==='googleLogin')){
 		$action = $_POST ['action'];
 			if ($action ==='googleLogin'){
 			$user = $_POST ['username'];
@@ -36,10 +36,11 @@ else if (isset ( $_POST ['username'] ) && isset ( $_POST ['password'] )) {
 		}
 	}
 
+// echo $action;
 
 	if ($action === 'register'){
 		$email = $_POST['email'];
-		if ($myDatabaseFunctions->canRegisterTrainer($user,$email)){
+		if ($myDatabaseFunctions->canRegisterTrainer($user)){
 			$myDatabaseFunctions->registerTrainer($user, $pwd, $email);
 			header("Location: ./index.php?mode=main" );
 		} else {

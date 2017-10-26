@@ -29,13 +29,13 @@
  <div id="my-signin2" style="margin:auto; width: 55%" ></div>
 </div>
   <script>
-	var name;
+	var username;
 	var email;
 	var action;
     function onSuccess(googleUser) {
       console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
 			console.log('The email is: ' + googleUser.getBasicProfile().getEmail());
-			 name=googleUser.getBasicProfile().getName();
+			 username=googleUser.getBasicProfile().getName();
 			 email=googleUser.getBasicProfile().getEmail();
 			 action='googleLogin';
 			 loadDoc();
@@ -54,15 +54,20 @@
 	 var xhttp = new XMLHttpRequest();
 	 xhttp.onreadystatechange = function() {
 		 if (this.readyState == 4 && this.status == 200) {
- //      document.getElementById("demo").innerHTML = this.responseText;
+
+			var returnEmail=this.responseText.trim();
   		console.log('The request is sucessful');
-			
- 			window.location='index.php?mode=main';
+			if (returnEmail==email)
+ 				window.location='index.php?mode=main';
+			else {
+			 signOut();
+       window.location='index.php?mode=login';
+			}
 		 }
 	 };
 	 xhttp.open("POST", "controller.php", true);
 	 xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	 xhttp.send("name="+name+"&email="+email+"&action="+action);
+	 xhttp.send("username="+username+"&email="+email+"&action="+action);
  }
 
  // function addHidden(theForm, key, value) {
@@ -73,7 +78,18 @@
  //     input.value = value;
  //     theForm.appendChild(input);
  // }
-
+ function onLoad() {
+ 		 gapi.load('auth2', function() {
+ 			 gapi.auth2.init();
+ 		 });
+ 	 }
+ function signOut() {
+ 	var auth2 = gapi.auth2.getAuthInstance();
+ 	auth2.signOut().then(function () {
+ 		auth2.disconnect();  //revoke authorization, prevent auto-login
+ 		console.log('User signed out.');
+ 	});
+ }
     function onFailure(error) {
       console.log(error);
     }
@@ -90,8 +106,9 @@
     }
   </script>
 		</div>
-			<button style="width: 110px; margin: 10px; color: black" onclick="addNewUser()">add new user</button>
+			<button style="width: 110px; margin: 10px; color: black" onclick="addNewUser()">Register</button>
 	</div>
+
 
 </body>
 

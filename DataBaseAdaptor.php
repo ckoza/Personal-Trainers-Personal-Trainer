@@ -41,10 +41,20 @@
 			$stmt->execute ();
 			$userArray = $stmt->fetchAll ( PDO::FETCH_COLUMN );
 
-				if (in_array ( $user, $userArray ))
-					return false;
-
-			return true;
+				if (in_array ( $user, $userArray )){
+          $stmt = $this->DB->prepare ( "SELECT email FROM trainers WHERE user_name=:user" );
+          $stmt->bindParam('user',$user);
+          $stmt->execute ();
+          $emailArray = $stmt->fetch();
+          $_SESSION['email']=$emailArray[0];
+          $_SESSION['errorMessage'] = "Account already exists";
+          echo $emailArray[0];
+          $_SESSION['passHere']="True";
+					   return false;
+        }
+        else {
+			      return true;
+        }
 		}
 		// used to register a new trainer
 		public function registerTrainer($user, $pwd, $email) {

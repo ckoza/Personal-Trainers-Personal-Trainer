@@ -9,18 +9,18 @@ if (isset ( $_POST ['username']) && isset ( $_POST ['email'] ) ){
 		$action = $_POST ['action'];
 			if ($action ==='googleLogin'){
 			$user = $_POST ['username'];
-			$email = $_POST['email'];
 			$pwd='';
 			$_SESSION ['user'] = $user;
 		 if ($myDatabaseFunctions->canRegisterTrainer($user)){
 				$myDatabaseFunctions->registerTrainer($user, $pwd, $email);
 				$_SESSION ['login'] = true;
-			} else {
-			$_SESSION ['login'] = true; //in this case it is already registered
 		}
+		else {
+			$_SESSION ['login'] = false;
+		} //in this case it is already registered
 	}
 }
-if (isset ( $_POST ['username'] ) && isset ( $_POST ['password'] )) {
+else if (isset ( $_POST ['username'] ) && isset ( $_POST ['password'] )) {
 	$action = $_POST ['action'];
 	$user = $_POST ['username'];
 	$pwd = $_POST ['password'];

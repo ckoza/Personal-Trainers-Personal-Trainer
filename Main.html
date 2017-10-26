@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <!-- Author: Carson Koza -->
 <html>
@@ -20,6 +19,12 @@
 <form action="controller.php" method="post">
 <button href="Login.html" name="action" value="logout" onclick="signOut();" name="action" value="logout">Log Out</button>
 </form>
+<!-- <p>
+<?php
+print_r($_SESSION['email']);
+echo "The user is ";
+?>
+</p> -->
 <script>
 function clients(){
 	document.getElementById('section').src = "Clients.html";
@@ -50,10 +55,7 @@ function signOut() {
 }
 </script>
 </div>
-
 <iframe id="section" src="Clients.html"></iframe>
-
-
 <footer><h3 class="headfoot">Fitness Bros</h3></footer>
 </body>
 </html>

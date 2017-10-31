@@ -34,6 +34,7 @@ var data = [
 <link href="style.css" type="text/css" rel="stylesheet" >
 <title>Clients Page</title>
 </head>
+
 <body>
 <?php
 	session_start();
@@ -54,6 +55,7 @@ var data = [
 <th>Select</th>
 </tr>
 </table>
+    
 <script>
     function getAge(dateString) {
     var today = new Date();
@@ -65,9 +67,7 @@ var data = [
     }
     return age;
     }
-    
-    //var clients  = <?php echo $myDatabaseFunctions->getClientsAsArray($_SESSION['user']); ?>;
-    
+        
 	var ds = 0;
 	var s = data.length;
 	console.log(s);

@@ -12,7 +12,7 @@
 	</h1>
 		<form action="/new-client-handler" method="post">
 			<div>
-				<label  for="fname">First Name:</label>
+				<label for="fname">First Name:</label>
 				<input style="width: 200px; margin: 10px;" type="text" id="fname" name="first_name">
 			</div>
 			<div>
@@ -20,12 +20,12 @@
 				<input style="width: 200px; margin: 10px;" type="text" id="lname" name="last_name">
 			</div>
 			<div>
-				<label for="sex">Sex:</label>
+				<label  for="sex">Sex:</label>
 				<input style="width: 200px; margin: 10px;" type="text" id="sex" name="client_sex">
 			</div>
 			<div>
 				<label for="dob">Date of Birth:</label>
-				<select name="DOBMonth">
+				<select id= "DOBMonth" name="DOBMonth">
                     <option> - Month - </option>
                     <option value="January">January</option>
                     <option value="Febuary">Febuary</option>
@@ -41,7 +41,7 @@
                     <option value="December">December</option>
                 </select>
 
-                <select name="DOBDay">
+                <select id= "DOBDay" name="DOBDay">
                     <option> - Day - </option>
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -76,7 +76,7 @@
                     <option value="31">31</option>
                 </select>
 
-                <select name="DOBYear">
+                <select id= "DOBYear" name="DOBYear">
                     <option> - Year - </option>
                     <option value="2004">2004</option>
                     <option value="2003">2003</option>
@@ -148,7 +148,7 @@
 			<button type="reset">Add new client</button>
 			</div>
 		</form>
+        
 	</div>
-
 </body>
 </html>

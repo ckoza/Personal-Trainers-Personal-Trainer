@@ -2,26 +2,30 @@
 <html>
 <head>
 <script>
+for (var key in localStorage){
+   console.log(key)
+}
+// Changed DOB format to YEAR/MONTH/DATE for Date conversion ease
 var data = [
             {
                 "First": "Carson",
                 "Last": "Koza",
                 "Sex": "M",
-                "DOB": "10/07/1992",
+                "DOB": "1992/10/7",
                 "Weight": 140
             },
             {
             	"First": "Harry",
                 "Last": "Dresdon",
                 "Sex": "M",
-                "DOB": "5/12/1800",
+                "DOB": "1960/5/12",
                 "Weight": 185
             },
             {
             	"First": "Ratchet",
                 "Last": "Clank",
                 "Sex": "M",
-                "DOB": "1/1/1911",
+                "DOB": "2001/1/1",
                 "Weight": 85
             }
             ];
@@ -38,12 +42,23 @@ var data = [
 <th>First Name &nbsp;&nbsp;</th>
 <th>Last Name &nbsp;&nbsp;</th>
 <th>Sex &nbsp;</th>
-<th>DOB &nbsp;</th>
+<th>Age &nbsp;</th>
 <th>Weight &nbsp;</th>
 <th>Select</th>
 </tr>
 </table>
 <script>
+    function getAge(dateString) {
+    var today = new Date();
+    var birthDate = new Date(dateString);
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+    }
+    return age;
+    }
+    
 	var ds = 0;
 	var s = data.length;
 	console.log(s);
@@ -69,7 +84,7 @@ var data = [
 		cell0.innerHTML = data[ds].First;
 		cell1.innerHTML = data[ds].Last;
 		cell2.innerHTML = data[ds].Sex;
-		cell3.innerHTML = data[ds].DOB;
+		cell3.innerHTML = getAge(data[ds].DOB);
 		cell4.innerHTML = data[ds].Weight;
 		
 		var button =  "<Button onclick='RowClicked(" + cell5.id + ")'>View</Button>";
@@ -87,6 +102,8 @@ function RowClicked(x){
 	console.log(x);
 	window.location.href = "Workout.html";
 }
+
+
 </script>
 
 

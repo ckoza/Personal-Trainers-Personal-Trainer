@@ -16,8 +16,9 @@
 					placeholder="User Name" name="username" pattern=".{1,}" required>
 				<input style="width: 200px; margin: 10px;" type="password"
 					placeholder="Password" name="password" pattern=".{1,}" required>
-				<input style="width: 200px; margin: 10px;" type="email"
-					placeholder="Email" name="email" required>
+				<input style="width: 200px; margin: 10px;" type="text"
+					placeholder="Email" name="email"
+					pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required>
 				<input type="hidden" name="action" value="register"> <input
 					style="width: 210px; margin: 10px;" type="submit" name="submit"
 					value="Register">
@@ -26,7 +27,7 @@
 			<?php
 				echo PHP_EOL . $_SESSION['errorMessage'] . PHP_EOL;
 			?>
-			
+
 		</div>
 	</div>
 </body>

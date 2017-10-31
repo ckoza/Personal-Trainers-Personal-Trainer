@@ -20,45 +20,45 @@
 			<div>
 				<label for="fname">First Name:</label> <input
 					style="width: 200px; margin: 10px;" type="text" id="fname"
-					name="first_name">
+					name="first_name" required>
 			</div>
 			<div>
 				<label for="lname">Last Name:</label> <input
 					style="width: 200px; margin: 10px;" type="text" id="lname"
-					name="last_name">
+					name="last_name" required>
 			</div>
 			<div>
 				<label for="sex">Sex:</label> <input
 					style="width: 200px; margin: 10px;" type="text" id="sex"
-					name="client_sex">
+					name="client_sex" required>
 			</div>
 			<div>
 				<label for="dob">Date of Birth:</label> <select id="DOBMonth"
-					name="DOBMonth">
-					<option>- Month -</option>
-					<option value="January">January</option>
-					<option value="Febuary">Febuary</option>
-					<option value="March">March</option>
-					<option value="April">April</option>
-					<option value="May">May</option>
-					<option value="June">June</option>
-					<option value="July">July</option>
-					<option value="August">August</option>
-					<option value="September">September</option>
-					<option value="October">October</option>
-					<option value="November">November</option>
-					<option value="December">December</option>
-				</select> <select id="DOBDay" name="DOBDay">
-					<option>- Day -</option>
-					<option value="1">1</option>
-					<option value="2">2</option>
-					<option value="3">3</option>
-					<option value="4">4</option>
-					<option value="5">5</option>
-					<option value="6">6</option>
-					<option value="7">7</option>
-					<option value="8">8</option>
-					<option value="9">9</option>
+					name="DOBMonth" required>
+					<option value="">- Month -</option>
+					<option value="01">January</option>
+					<option value="02">February</option>
+					<option value="03">March</option>
+					<option value="04">April</option>
+					<option value="05">May</option>
+					<option value="06">June</option>
+					<option value="07">July</option>
+					<option value="08">August</option>
+					<option value="09">September</option>
+					<option value="10">October</option>
+					<option value="11">November</option>
+					<option value="12">December</option>
+				</select> <select id="DOBDay" name="DOBDay" required>
+					<option value="">- Day -</option>
+					<option value="01">1</option>
+					<option value="02">2</option>
+					<option value="03">3</option>
+					<option value="04">4</option>
+					<option value="05">5</option>
+					<option value="06">6</option>
+					<option value="07">7</option>
+					<option value="08">8</option>
+					<option value="09">9</option>
 					<option value="10">10</option>
 					<option value="11">11</option>
 					<option value="12">12</option>
@@ -81,8 +81,8 @@
 					<option value="29">29</option>
 					<option value="30">30</option>
 					<option value="31">31</option>
-				</select> <select id="DOBYear" name="DOBYear">
-					<option>- Year -</option>
+				</select> <select id="DOBYear" name="DOBYear" required>
+					<option value="">- Year -</option>
 					<option value="2004">2004</option>
 					<option value="2003">2003</option>
 					<option value="2002">2002</option>
@@ -147,7 +147,7 @@
 			<div>
 				<label for="weight">Current weight (pounds):</label> <input
 					style="width: 200px; margin: 10px;" type="text" id="weight"
-					name="client_weight">
+					name="client_weight" required>
 			</div>
 
 			<div class="button">

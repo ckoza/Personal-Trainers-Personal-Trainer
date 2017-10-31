@@ -1,5 +1,5 @@
  <?php
-
+	session_start();
 	// to use methods, call: require_once './DataBaseAdaptor.php';
 	// then call $myDatabaseFunctions->someFunction();
 	class DatabaseAdaptor {
@@ -20,7 +20,7 @@
 		// adds a client to the current trainer's list
 		public function addClient($first, $last, $sex, $dob, $weight) {
 			$stmt = $this->DB->prepare ( "INSERT INTO clients (belongs_to, first_name, last_name, sex, dob, weight) values(:trainer, :first, :last, :sex, :dob, :weight)" );
-			$stmt->bindParam ( 'trainer', $_SESSION['user'] );
+			$stmt->bindParam ( 'trainer', strtolower($_SESSION['user']));
 			$stmt->bindParam ( 'first', $first );
 			$stmt->bindParam ( 'last', $last );
 			$stmt->bindParam ( 'sex', $sex );
@@ -37,7 +37,7 @@
 			return $stmt->fetchAll ( PDO::FETCH_ASSOC );
 		}
 		// for login page
-		public function login() {
+		public function login($user) {
 			$_SESSION ['user'] = $user;
 			$_SESSION ['login'] = true;
 		}
@@ -72,7 +72,7 @@
 		public function registerTrainer($user, $pwd, $email) {
 			$hashed_pwd = password_hash ( $pwd, PASSWORD_DEFAULT );
 			$stmt = $this->DB->prepare ( "INSERT INTO trainers (user_name, password, email) values(:user, :password, :email)" );
-			$stmt->bindParam ( 'user', $user );
+			$stmt->bindParam ( 'user', strtolower($user));
 			$stmt->bindParam ( 'password', $hashed_pwd );
 			$stmt->bindParam ( 'email', $email );
 			$stmt->execute ();

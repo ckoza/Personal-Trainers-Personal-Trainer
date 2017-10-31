@@ -1,7 +1,7 @@
 <?php
 require_once './DataBaseAdaptor.php';
 session_start ();
-
+		$action = $_POST ['action'];
 $_SESSION ['errorMessage'] = "";
 // echo "what the !";
 // register and login

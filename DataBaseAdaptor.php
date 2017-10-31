@@ -17,6 +17,18 @@
 				exit ();
 			}
 		}
+		// adds a client to the current trainer's list
+		public function addClient($first, $last, $sex, $dob, $weight) {
+			$stmt = $this->DB->prepare ( "INSERT INTO clients (belongs_to, first_name, last_name, sex, dob, weight) values(:trainer, :first, :last, :sex, :dob, :weight)" );
+			$stmt->bindParam ( 'trainer', $_SESSION['user'] );
+			$stmt->bindParam ( 'first', $first );
+			$stmt->bindParam ( 'last', $last );
+			$stmt->bindParam ( 'sex', $sex );
+			$stmt->bindParam ( 'dob', $dob );
+			$stmt->bindParam ( 'weight', $weight );
+			$stmt->execute ();
+		}
+		
 		// $trainer is the variable used in the belongs_to field for the client
 		public function getClientsAsArray($trainer) {
 			$stmt = $this->DB->prepare ( "SELECT * FROM clients WHERE belongs_to=:trainer" );

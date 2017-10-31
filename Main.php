@@ -9,6 +9,14 @@
 <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
 </head>
 <body class="body">
+<?php
+	session_start();
+	if (!isset($_SESSION['login']) || !$_SESSION['login']) {
+		header ( "Location: ./Login.html" );
+		die;
+	}
+?>
+
 <header><h2 class="headfoot">Personal Trainers Personal Assistant</h2></header>
 
 <div class="main">
@@ -27,16 +35,16 @@ echo "The user is ";
 </p> -->
 <script>
 function clients(){
-	document.getElementById('section').src = "Clients.html";
+	document.getElementById('section').src = "Clients.php";
 }
 function newClient(){
-	document.getElementById('section').src = "newClient.html";
+	document.getElementById('section').src = "newClient.php";
 }
 function calendar(){
-	document.getElementById('section').src = "calender.html";
+	document.getElementById('section').src = "calender.php";
 }
 function examples(){
-	document.getElementById('section').src = "Examples.html";
+	document.getElementById('section').src = "Examples.php";
 }
 </script>
 
@@ -55,7 +63,7 @@ function signOut() {
 }
 </script>
 </div>
-<iframe id="section" src="Clients.html"></iframe>
+<iframe id="section" src="Clients.php"></iframe>
 <footer><h3 class="headfoot">Fitness Bros</h3></footer>
 </body>
 </html>

@@ -16,7 +16,7 @@ if (isset ( $_GET ['mode'] )) {
   elseif ($_GET ['mode'] === 'login')
     require_once ("./Login.html");
   elseif ($_GET ['mode'] === 'main')
-    require_once ("./Main.html");
+    require_once ("./Main.php");
 } else { // default
 	$_SESSION['errorMessage'] = '';
 	require_once ("./Login.html");

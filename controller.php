@@ -29,10 +29,10 @@ else if (isset ( $_POST ['username'] ) && isset ( $_POST ['password'] )) {
 		assert ($myDatabaseFunctions->isPasswordVerified ( $user, $pwd ));
 		if ($myDatabaseFunctions->isPasswordVerified ( $user, $pwd )) {
 			$myDatabaseFunctions->login ();
-			header ( "Location: ./index.php?mode=main" );
+			header ( "Location: ./Main.php" );
 		} else {
 			$_SESSION['errorMessage'] = "Invalid Account/Password";
-			header ( "Location: ./index.php?mode=login" );
+			header ( "Location: ./Login.html" );
 		}
 	}
 
@@ -42,12 +42,22 @@ else if (isset ( $_POST ['username'] ) && isset ( $_POST ['password'] )) {
 		$email = $_POST['email'];
 		if ($myDatabaseFunctions->canRegisterTrainer($user)){
 			$myDatabaseFunctions->registerTrainer($user, $pwd, $email);
-			header("Location: ./index.php?mode=main" );
+			header("Location: ./Main.php" );
 		} else {
 			$_SESSION['errorMessage'] = "Account already exists";
-			header("Location: ./index.php?mode=register" );
+			header("Location: ./RegisterTrainer.php" );
 		}
 	}
+}
+
+// add client
+else if (isset($_POST['first_name'])) {
+	$month = $_POST['DOBMonth'];
+	$day = $_POST['DOBDay'];
+	$year = $_POST['DOBYear'];
+	$dob = $year . '-' . $month . '-' . $day;	
+	$myDatabaseFunctions->addClient($_POST['first_name'], $_POST['last_name'], $_POST['client_sex'], $dob, $_POST['client_weight']);
+	header("Location: ./Main.php" );
 }
 
 // logout
@@ -55,6 +65,6 @@ else {
 	if ($action === 'logout'){
 		$myDatabaseFunctions->logout();
 	}
-	header ( "Location: ./index.php?mode=login" );
+	header ( "Location: ./Login.html" );
 }
 ?>

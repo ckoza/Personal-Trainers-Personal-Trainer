@@ -7,6 +7,13 @@
 <title>Examples Page</title>
 </head>
 <body>
+<?php
+	session_start();
+	if (!isset($_SESSION['login']) || !$_SESSION['login']) {
+		header ( "Location: ./Login.html" );
+		die;
+	}
+?>
 
 <div>
 <Button onclick="pic('Bench')">Bench Press</Button>

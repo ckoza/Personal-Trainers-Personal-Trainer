@@ -161,6 +161,13 @@ var leg = [
 <title>Insert title here</title>
 </head>
 <body onload="openCity(event, 'Push_Day')">
+<?php
+	session_start();
+	if (!isset($_SESSION['login']) || !$_SESSION['login']) {
+		header ( "Location: ./Login.html" );
+		die;
+	}
+?>
 
 <div style="max-width: 900px">
 

@@ -5,30 +5,6 @@
 for (var key in localStorage){
    console.log(key)
 }
-// Changed DOB format to YEAR/MONTH/DATE for Date conversion ease
-var data = [
-            {
-                "First": "Carson",
-                "Last": "Koza",
-                "Sex": "M",
-                "DOB": "1992/10/7",
-                "Weight": 140
-            },
-            {
-            	"First": "Harry",
-                "Last": "Dresdon",
-                "Sex": "M",
-                "DOB": "1960/5/12",
-                "Weight": 185
-            },
-            {
-            	"First": "Ratchet",
-                "Last": "Clank",
-                "Sex": "M",
-                "DOB": "2001/1/1",
-                "Weight": 85
-            }
-            ];
 </script>
 <meta charset="UTF-8">
 <link href="style.css" type="text/css" rel="stylesheet" >
@@ -42,6 +18,13 @@ var data = [
 		header ( "Location: ./Login.html" );
 		die;
 	}
+  else {
+    require_once ("./DatabaseAdaptor.php");
+    $user = $_SESSION ['user'];
+    $clientArray= $myDatabaseFunctions->getClientsAsArray($user);
+  //  print_r($newArray);
+
+  }
 ?>
 
 <div>
@@ -67,7 +50,7 @@ var data = [
     }
     return age;
     }
-
+  var data = <?php echo json_encode($clientArray); ?>;
 	var ds = 0;
 	var s = data.length;
 	console.log(s);
@@ -90,11 +73,11 @@ var data = [
 		var cell5 = row.insertCell(5);
 		cell5.id="B_Row"+i;
 
-		cell0.innerHTML = data[ds].First;
-		cell1.innerHTML = data[ds].Last;
-		cell2.innerHTML = data[ds].Sex;
-		cell3.innerHTML = getAge(data[ds].DOB);
-		cell4.innerHTML = data[ds].Weight;
+		cell0.innerHTML = data[ds].first_name;
+		cell1.innerHTML = data[ds].last_name;
+		cell2.innerHTML = data[ds].sex;
+		cell3.innerHTML = getAge(data[ds].dob);
+		cell4.innerHTML = data[ds].weight;
 
 		var button =  "<Button onclick='RowClicked(" + cell5.id + ")'>View</Button>";
 		cell5.innerHTML = button;

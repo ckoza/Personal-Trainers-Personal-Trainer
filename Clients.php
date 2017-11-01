@@ -55,7 +55,7 @@ var data = [
 <th>Select</th>
 </tr>
 </table>
-    
+
 <script>
     function getAge(dateString) {
     var today = new Date();
@@ -67,7 +67,7 @@ var data = [
     }
     return age;
     }
-        
+
 	var ds = 0;
 	var s = data.length;
 	console.log(s);
@@ -86,30 +86,30 @@ var data = [
 		cell3.id=i+"_Cell3";
 		var cell4 = row.insertCell(4);
 		cell4.id=i+"_Cell4";
-		
+
 		var cell5 = row.insertCell(5);
 		cell5.id="B_Row"+i;
-		
+
 		cell0.innerHTML = data[ds].First;
 		cell1.innerHTML = data[ds].Last;
 		cell2.innerHTML = data[ds].Sex;
 		cell3.innerHTML = getAge(data[ds].DOB);
 		cell4.innerHTML = data[ds].Weight;
-		
+
 		var button =  "<Button onclick='RowClicked(" + cell5.id + ")'>View</Button>";
 		cell5.innerHTML = button;
-		
-		//cell5.innerHTML = 
+
+		//cell5.innerHTML =
 		ds++;
-		
+
 	}
-	
+
 </script>
 
 <script type="text/javascript">
 function RowClicked(x){
 	console.log(x);
-	window.location.href = "Workout.html";
+	window.location.href = "Workout.php";
 }
 
 

@@ -1,5 +1,4 @@
  <?php
-	session_start();
 	// to use methods, call: require_once './DataBaseAdaptor.php';
 	// then call $myDatabaseFunctions->someFunction();
 	class DatabaseAdaptor {
@@ -28,7 +27,7 @@
 			$stmt->bindParam ( 'weight', $weight );
 			$stmt->execute ();
 		}
-		
+
 		// $trainer is the variable used in the belongs_to field for the client
 		public function getClientsAsArray($trainer) {
 			$stmt = $this->DB->prepare ( "SELECT * FROM clients WHERE belongs_to=:trainer" );

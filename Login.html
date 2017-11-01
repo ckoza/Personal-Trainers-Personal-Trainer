@@ -13,16 +13,19 @@
 	<div class="login">
 		<h1 style="color: #10155e;">Login</h1>
 		<div class='container'>
-			<?php
-				echo PHP_EOL . $_SESSION['errorMessage'] . PHP_EOL;
-			?>
+
+			<div id="googleLoginError">
+				<?php
+					echo PHP_EOL . $_SESSION['errorMessage'] . PHP_EOL;
+				?>
+			</div>
 			<form action="controller.php" method="post">
 				<input style="width: 200px; margin: 10px;" type="text"
 					placeholder="User Name" name="username" pattern=".{1,}" required>
 				<input style="width: 200px; margin: 10px;" type="password"
 					placeholder="Password" name="password" pattern=".{1,}" required>
-				<input type="hidden" name="action" value="login"> <input
-					style="width: 210px; margin: 10px;" type="submit" name="submit"
+				<input type="hidden" name="action" value="login">
+				<input style="width: 210px; margin: 10px;" type="submit" name="submit"
 					value="Login">
 			</form>
  <div style="margin:12px">
@@ -56,12 +59,18 @@
 		 if (this.readyState == 4 && this.status == 200) {
 
 			var returnEmail=this.responseText.trim();
-  		console.log('The request is sucessful');
-			if (returnEmail==email)
- 				window.location='index.php?mode=main';
-			else {
+
+			if (returnEmail==email){
+				console.log('The request is sucssasdaessful');
+			  window.location='index.php?mode=main';
+      }
+			else
+			{
 			 signOut();
-       window.location='index.php?mode=login';
+			 console.log('email is '+email);
+			 console.log('returnEmail is '+returnEmail);
+	     document.getElementById("googleLoginError").innerHTML='The name is already registered';
+//       window.location='index.php?mode=login';
 			}
 		 }
 	 };

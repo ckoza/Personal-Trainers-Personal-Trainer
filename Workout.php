@@ -442,6 +442,63 @@ function fillTable(ID){
 			
 			ds++;
 		}	
+		var next;		
+		next = getNextWorkout(ID);
+    	
+		var row = table.insertRow(s+1);
+    	var cell0 = row.insertCell(0);
+    	var cell1 = row.insertCell(1);
+    	var cell2 = row.insertCell(2);
+    	var cell3 = row.insertCell(3);
+    	var cell4 = row.insertCell(4);
+    	
+    	cell0.innerHTML = next[0]; 
+    	cell1.innerHTML = next[1]; 
+    	cell2.innerHTML = next[2]; 
+    	cell3.innerHTML = next[3]; 
+    	cell4.innerHTML = next[4]; 
+}
+</script>
+
+<script>
+function getNextWorkout(day){
+	var toRet = ["Next", 0,0,0,0];
+	
+	switch(day){
+	 case "Push_Day":
+		 var len = push.length -1;
+		 toRet[0] = "Next Up";
+		 toRet[1] = round5(push[len].FlatBench + ((push[len].FlatBench - push[0].FlatBench) / len));
+		 toRet[2] = round5(push[len].InclineBench + ((push[len].InclineBench - push[0].InclineBench) / len));
+		 toRet[3] = round5(push[len].TricepExtention + ((push[len].TricepExtention - push[0].TricepExtention) / len));
+		 toRet[4] = round5(push[len].Arnolds + ((push[len].Arnolds - push[0].Arnolds) / len));
+		 break;
+	 case "Pull_Day":
+		 var len = pull.length -1;
+		 toRet[0] = "Next Up";
+		 toRet[1] = round5(pull[len].Deadlift + ((pull[len].Deadlift - pull[0].Deadlift) / len));
+		 toRet[2] = round5(pull[len].BentRows + ((pull[len].BentRows - pull[0].BentRows) / len));
+		 toRet[3] = round5(pull[len].BarbellCurls + ((pull[len].BarbellCurls - pull[0].BarbellCurls) / len));
+		 toRet[4] = round5(pull[len].Lat + ((pull[len].Lat - pull[0].Lat) / len));
+		 break;
+	 case "Leg_Day":
+		 var len = leg.length -1;
+		 toRet[0] = "Next Up";
+		 toRet[1] = round5(leg[len].Squat + ((leg[len].Squat - leg[0].Squat) / len));
+		 toRet[2] = round5(leg[len].LegPress + ((leg[len].LegPress - leg[0].LegPress) / len));
+		 toRet[3] = round5(leg[len].LegExtension + ((leg[len].LegExtension - leg[0].LegExtension) / len));
+		 toRet[4] = round5(leg[len].LegCurl + ((leg[len].LegCurl - leg[0].LegCurl) / len));
+		 break;
+	 default:
+		 break;
+	 }
+	
+	return toRet;
+}
+
+function round5(x)
+{
+    return Math.ceil(x/5)*5;
 }
 </script>
 

@@ -25,7 +25,9 @@ session_start();
 <button onclick="clients()">View Clients</button>
 <button onclick="newClient()">Add New Client</button>
 <button onclick="calendar()">View Calender</button>
+<button onclick="bodySize()">Measurements</button>
 <button onclick="examples()">View Examples</button>
+
 <form action="controller.php" method="post">
 <button href="Login.html" name="action" value="logout" onclick="signOut();" name="action" value="logout">Log Out</button>
 </form>
@@ -47,6 +49,9 @@ function calendar(){
 }
 function examples(){
 	document.getElementById('section').src = "Examples.php";
+}
+function bodySize(){
+	document.getElementById('section').src = "bodySize.php";
 }
 </script>
 

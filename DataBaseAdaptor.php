@@ -17,21 +17,27 @@
 			}
 		}
 		// adds a client to the current trainer's list
-		public function addClient($first, $last, $sex, $dob, $weight) {
-			$stmt = $this->DB->prepare ( "INSERT INTO clients (belongs_to, first_name, last_name, sex, dob, weight) values(:trainer, :first, :last, :sex, :dob, :weight)" );
-			$stmt->bindParam ( 'trainer', strtolower($_SESSION['user']));
-			$stmt->bindParam ( 'first', $first );
+		public function addClient($id, $first, $last, $sex, $dob, $weight) {
+			$stmt = $this->DB->prepare ( "INSERT INTO clients (belongs_to_id, first_name, last_name, sex, dob, weight) values(:id, :first, :last, :sex, :dob, :weight)" );
+	   	$stmt->bindParam ( 'id', $id );
+      $stmt->bindParam ( 'first', $first );
 			$stmt->bindParam ( 'last', $last );
 			$stmt->bindParam ( 'sex', $sex );
 			$stmt->bindParam ( 'dob', $dob );
 			$stmt->bindParam ( 'weight', $weight );
 			$stmt->execute ();
 		}
+    public function getTrainerId($trainer){
+      $stmt = $this->DB->prepare ( "SELECT trainer_id FROM trainers WHERE user_name=:trainer" );
+      $stmt->bindParam ( 'trainer', $trainer );
+      $stmt->execute ();
+      return $stmt->fetch( PDO::FETCH_ASSOC );
+    }
 
 		// $trainer is the variable used in the belongs_to field for the client
-		public function getClientsAsArray($trainer) {
-			$stmt = $this->DB->prepare ( "SELECT * FROM clients WHERE belongs_to=:trainer" );
-			$stmt->bindParam ( 'trainer', $trainer );
+		public function getClientsAsArray($id) {
+			$stmt = $this->DB->prepare ( "SELECT * FROM clients WHERE belongs_to_id=:id" );
+			$stmt->bindParam ( 'id', $id );
 			$stmt->execute ();
 			return $stmt->fetchAll ( PDO::FETCH_ASSOC );
 		}

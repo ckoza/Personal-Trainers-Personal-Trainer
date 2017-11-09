@@ -19,9 +19,10 @@ for (var key in localStorage){
 		die;
 	}
   else {
-    require_once ("./DatabaseAdaptor.php");
+    require_once ("./DataBaseAdaptor.php");
     $user = $_SESSION ['user'];
-    $clientArray= $myDatabaseFunctions->getClientsAsArray($user);
+    $getId = $myDatabaseFunctions->getTrainerId($user);
+    $clientArray= $myDatabaseFunctions->getClientsAsArray($getId['trainer_id']);
   //  print_r($newArray);
 
   }

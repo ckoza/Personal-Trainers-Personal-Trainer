@@ -61,7 +61,9 @@ else if (isset($_POST['first_name'])) {
 		$day = '30';
 
 	$dob = $year . '-' . $month . '-' . $day;
-	$myDatabaseFunctions->addClient($_POST['first_name'], $_POST['last_name'], $_POST['client_sex'], $dob, $_POST['client_weight']);
+	$trainer=$_SESSION['user'];
+	$getId = $myDatabaseFunctions->getTrainerId($trainer);
+	$myDatabaseFunctions->addClient($getId['trainer_id'],$_POST['first_name'], $_POST['last_name'], $_POST['client_sex'], $dob, $_POST['client_weight']);
 	header("Location: ./Clients.php" );
 }
 

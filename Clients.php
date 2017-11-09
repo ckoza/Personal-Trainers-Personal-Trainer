@@ -80,7 +80,7 @@ for (var key in localStorage){
 		cell3.innerHTML = getAge(data[ds].dob);
 		cell4.innerHTML = data[ds].weight;
 
-		var button =  "<Button onclick='RowClicked(" + cell5.id + ")'>View</Button>";
+		var button =  "<Button onclick='RowClicked(" +data[ds].client_id + ")'>View</Button>";
 		cell5.innerHTML = button;
 
 		//cell5.innerHTML =
@@ -93,7 +93,7 @@ for (var key in localStorage){
 <script type="text/javascript">
 function RowClicked(x){
 	console.log(x);
-	window.location.href = "Workout.php";
+	window.location.href = "Workout.php?client_id="+x;
 }
 
 

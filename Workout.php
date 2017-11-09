@@ -43,116 +43,116 @@ div.tab button.active {
 <script>
 var push = [
             {
-                "Date": "2017/10/01",
+                "date": "2017/10/01",
             	"FlatBench": 95,
             	"InclineBench": 55,
-            	"TricepExtention": 50,
-            	"Arnolds": 35
+            	"tricep_extention": 50,
+            	"arnolds": 35
             },
             {
-            	"Date": "2017/10/08",
+            	"date": "2017/10/08",
             	"FlatBench": 105,
             	"InclineBench": 55,
-            	"TricepExtention": 55,
-            	"Arnolds": 40
+            	"tricep_extention": 55,
+            	"arnolds": 40
             },
             {
-            	"Date": "2017/10/15",
+            	"date": "2017/10/15",
             	"FlatBench": 105,
             	"InclineBench": 60,
-            	"TricepExtention": 60,
-            	"Arnolds": 42.5
+            	"tricep_extention": 60,
+            	"arnolds": 42.5
             },
             {
-            	"Date": "2017/10/22",
+            	"date": "2017/10/22",
             	"FlatBench": 115,
             	"InclineBench": 65,
-            	"TricepExtention": 70,
-            	"Arnolds": 45
+            	"tricep_extention": 70,
+            	"arnolds": 45
             },
             {
-            	"Date": "2017/10/29",
+            	"date": "2017/10/29",
             	"FlatBench": 135,
             	"InclineBench": 70,
-            	"TricepExtention": 65,
-            	"Arnolds": 55
+            	"tricep_extention": 65,
+            	"arnolds": 55
             }
             ];
-            
+
 var pull = [
             {
-                "Date": "2017/10/03",
-                "Deadlift": 135,
-                "BentRows": 35,
-                "BarbellCurls": 40,
-                "Lat": 40
+                "date": "2017/10/03",
+                "dead_lift": 135,
+                "bent_rows": 35,
+                "barbell_curls": 40,
+                "lat": 40
             },
             {
-            	"Date": "2017/10/10",
-            	"Deadlift": 145,
-                "BentRows": 40,
-                "BarbellCurls": 45,
-                "Lat": 50
+            	"date": "2017/10/10",
+            	"dead_lift": 145,
+                "bent_rows": 40,
+                "barbell_curls": 45,
+                "lat": 50
             },
             {
-            	"Date": "2017/10/17",
-            	"Deadlift": 155,
-                "BentRows": 45,
-                "BarbellCurls": 45,
-                "Lat": 60
+            	"date": "2017/10/17",
+            	"dead_lift": 155,
+                "bent_rows": 45,
+                "barbell_curls": 45,
+                "lat": 60
             },
             {
-            	"Date": "2017/10/24",
-            	"Deadlift": 160,
-                "BentRows": 45,
-                "BarbellCurls": 45,
-                "Lat": 65
+            	"date": "2017/10/24",
+            	"dead_lift": 160,
+                "bent_rows": 45,
+                "barbell_curls": 45,
+                "lat": 65
             },
             {
-            	"Date": "2017/10/31",
-            	"Deadlift": 165,
-                "BentRows": 55,
-                "BarbellCurls": 60,
-                "Lat": 70
+            	"date": "2017/10/31",
+            	"dead_lift": 165,
+                "bent_rows": 55,
+                "barbell_curls": 60,
+                "lat": 70
             }
             ];
-            
+
 var leg = [
             {
-                "Date": "2017/10/05",
-                "Squat": 135,
-                "LegPress": 155,
-                "LegExtension": 50,
-                "LegCurl": 25
-                
+                "date": "2017/10/05",
+                "squat": 135,
+                "leg_press": 155,
+                "leg_extension": 50,
+                "leg_curl": 25
+
             },
             {
-            	"Date": "2017/10/12",
-            	"Squat": 145,
-                "LegPress": 165,
-                "LegExtension": 60,
-                "LegCurl": 30
+            	"date": "2017/10/12",
+            	"squat": 145,
+                "leg_press": 165,
+                "leg_extension": 60,
+                "leg_curl": 30
             },
             {
-            	"Date": "2017/10/19",
-            	"Squat": 145,
-                "LegPress": 175,
-                "LegExtension": 55,
-                "LegCurl": 35
+            	"date": "2017/10/19",
+            	"squat": 145,
+                "leg_press": 175,
+                "leg_extension": 55,
+                "leg_curl": 35
             },
             {
-            	"Date": "2017/10/26",
-            	"Squat": 155,
-                "LegPress": 190,
-                "LegExtension": 60,
-                "LegCurl": 45
+            	"date": "2017/10/26",
+            	"squat": 155,
+                "leg_press": 190,
+                "leg_extension": 60,
+                "leg_curl": 45
             },
             {
-            	"Date": "2017/11/02",
-            	"Squat": 165,
-                "LegPress": 200,
-                "LegExtension": 85,
-                "LegCurl": 55
+            	"date": "2017/11/02",
+            	"squat": 165,
+                "leg_press": 200,
+                "leg_extension": 85,
+                "leg_curl": 55
             }
             ];
 </script>
@@ -167,6 +167,12 @@ var leg = [
 		header ( "Location: ./Login.html" );
 		die;
 	}
+  else {
+    require_once ("./DataBaseAdaptor.php");
+    $pushArray = $myDatabaseFunctions->getClientsWorkout('push',$_GET['client_id']);
+    $pullArray = $myDatabaseFunctions->getClientsWorkout('pull',$_GET['client_id']);
+    $legArray = $myDatabaseFunctions->getClientsWorkout('leg',$_GET['client_id']);
+  }
 ?>
 
 <div style="max-width: 900px">
@@ -182,7 +188,7 @@ var leg = [
   <h3>Push Day</h3>
 <table id="PushTable">
 <tr>
-<th>&nbsp;&nbsp; Date &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+<th>&nbsp;&nbsp; date &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
 <th>Flat Bench<br>(3x10) &nbsp;&nbsp;&nbsp;</th>
 <th>Incline Bench<br> (2x10) &nbsp;&nbsp;&nbsp; </th>
 <th>Tricep Extension<br> (3x10) &nbsp;&nbsp; </th>
@@ -198,11 +204,11 @@ var leg = [
   <h3>Pull Day</h3>
   <table id="PullTable">
 <tr>
-<th>&nbsp;&nbsp; Date &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-<th>Deadlift<br> (3x6) &nbsp;&nbsp;&nbsp;</th>
+<th>&nbsp;&nbsp; date &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+<th>dead_lift<br> (3x6) &nbsp;&nbsp;&nbsp;</th>
 <th>Bent Row<br> (2x10) &nbsp;&nbsp;&nbsp; </th>
 <th>Barbell Curl<br> (2x15) &nbsp;&nbsp; </th>
-<th>Lat Pull Down<br> (3x10) &nbsp;&nbsp; </th>
+<th>lat Pull Down<br> (3x10) &nbsp;&nbsp; </th>
 </tr>
 </table>
 </div>
@@ -211,8 +217,8 @@ var leg = [
   <h3>Leg Day</h3>
   <table id="LegTable" >
 <tr>
-<th>&nbsp;&nbsp; Date &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-<th>Squat<br>(2x10)</th>
+<th>&nbsp;&nbsp; date &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+<th>squat<br>(2x10)</th>
 <th>Leg Press<br> (3x8) &nbsp;&nbsp;&nbsp; </th>
 <th>Leg Extentions<br> (2x15) &nbsp;&nbsp; </th>
 <th>Leg Curls<br> (2x12) &nbsp;&nbsp; </th>
@@ -223,14 +229,16 @@ var leg = [
 </div>
 
 <script>
-
+var push = <?php echo json_encode($pushArray); ?>;
+var pull = <?php echo json_encode($pullArray); ?>;
+var leg = <?php echo json_encode($legArray); ?>;
 var theDay = "Push_Day";
 var chartData;
 var chart;
 
 function openCity(evt, whatDay) {
 	theDay=whatDay;
-	
+
 //-----------------------------------------------------------------------
 chartData = generateChartData();
 
@@ -313,7 +321,7 @@ chartData = generateChartData();
     },
     "categoryField": "date",
     "categoryAxis": {
-        "parseDates": true,
+        "parsedates": true,
         "axisColor": "#DADADA",
         "minorGridEnabled": true
     }
@@ -322,7 +330,7 @@ chartData = generateChartData();
 chart.addListener("dataUpdated", zoomChart);
 zoomChart();
 //-----------------------------------------------------------------------
-	
+
 	fillTable(whatDay);
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");
@@ -351,7 +359,7 @@ function fillTable(ID){
 		 var reset = `
 			 <table id="PushTable">
 			 <tr>
-			 <th>&nbsp;&nbsp; Date &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+			 <th>&nbsp;&nbsp; date &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
 			 <th>Flat Bench<br>(3x10) &nbsp;&nbsp;&nbsp;</th>
 			 <th>Incline Bench<br> (2x10) &nbsp;&nbsp;&nbsp; </th>
 			 <th>Tricep Extension<br> (3x10) &nbsp;&nbsp; </th>
@@ -366,11 +374,11 @@ function fillTable(ID){
 		 var reset = `
 			 <table id="PullTable">
 			 <tr>
-			 <th>&nbsp;&nbsp; Date &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-			 <th>Deadlift<br> (3x6) &nbsp;&nbsp;&nbsp;</th>
+			 <th>&nbsp;&nbsp; date &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+			 <th>dead_lift<br> (3x6) &nbsp;&nbsp;&nbsp;</th>
 			 <th>Bent Row<br> (2x10) &nbsp;&nbsp;&nbsp; </th>
 			 <th>Barbell Curl<br> (2x15) &nbsp;&nbsp; </th>
-			 <th>Lat Pull Down<br> (3x10) &nbsp;&nbsp; </th>
+			 <th>lat Pull Down<br> (3x10) &nbsp;&nbsp; </th>
 			 </tr>
 			 </table>
 			 `;
@@ -381,8 +389,8 @@ function fillTable(ID){
 		 var reset = `
 			 <table id="LegTable" >
 			 <tr>
-			 <th>&nbsp;&nbsp; Date &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-			 <th>Squat<br> (2x10) &nbsp;&nbsp;&nbsp;</th>
+			 <th>&nbsp;&nbsp; date &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+			 <th>squat<br> (2x10) &nbsp;&nbsp;&nbsp;</th>
 			 <th>Leg Press<br> (3x8) &nbsp;&nbsp;&nbsp; </th>
 			 <th>Leg Extentions<br> (2x15) &nbsp;&nbsp; </th>
 			 <th>Leg Curls<br> (2x12) &nbsp;&nbsp; </th>
@@ -394,105 +402,105 @@ function fillTable(ID){
 		 break;
 	 }
 		stuff.innerHTML=reset;
-	 
+
 		var table = document.getElementById(tableID);
 		for(var i = 0; i < s; i++){
-			
+
 			var row = table.insertRow(i+1);
 			row.id = "Row"+i;
-			
+
 			var call = row.id;
-			
+
 			var cell0 = row.insertCell(0);
 			var cell1 = row.insertCell(1);
 			var cell2 = row.insertCell(2);
 			var cell3 = row.insertCell(3);
 			var cell4 = row.insertCell(4);
-			
+
 			 switch(ID){
 			 case "Push_Day":
-				 cell0.innerHTML = push[ds].Date;
-				 cell1.innerHTML = push[ds].FlatBench;
-				 cell2.innerHTML = push[ds].InclineBench;
-				 cell3.innerHTML = push[ds].TricepExtention;
-				 cell4.innerHTML = push[ds].Arnolds;
+				 cell0.innerHTML = push[ds].date;
+				 cell1.innerHTML = push[ds].flat_bench;
+				 cell2.innerHTML = push[ds].incline_bench;
+				 cell3.innerHTML = push[ds].tricep_extention;
+				 cell4.innerHTML = push[ds].arnolds;
 				 break;
 			 case "Pull_Day":
-				 cell0.innerHTML = pull[ds].Date;
-				 cell1.innerHTML = pull[ds].Deadlift;
-				 cell2.innerHTML = pull[ds].BentRows;
-				 cell3.innerHTML = pull[ds].BarbellCurls;
-				 cell4.innerHTML = pull[ds].Lat;
+				 cell0.innerHTML = pull[ds].date;
+				 cell1.innerHTML = pull[ds].dead_lift;
+				 cell2.innerHTML = pull[ds].bent_rows;
+				 cell3.innerHTML = pull[ds].barbell_curls;
+				 cell4.innerHTML = pull[ds].lat;
 				 break;
 			 case "Leg_Day":
-				 cell0.innerHTML = leg[ds].Date;
-				 cell1.innerHTML = leg[ds].Squat;
-				 cell2.innerHTML = leg[ds].LegPress;
-				 cell3.innerHTML = leg[ds].LegExtension;
-				 cell4.innerHTML = leg[ds].LegCurl;
+				 cell0.innerHTML = leg[ds].date;
+				 cell1.innerHTML = leg[ds].squat;
+				 cell2.innerHTML = leg[ds].leg_press;
+				 cell3.innerHTML = leg[ds].leg_extension;
+				 cell4.innerHTML = leg[ds].leg_curl;
 				 break;
 			 default:
 				 break;
 			 }
-			
-		//	cell0.innerHTML = data[ds].Date;
+
+		//	cell0.innerHTML = data[ds].date;
 		//	cell1.innerHTML = data[ds].Bench;
-		//	cell2.innerHTML = data[ds].Squat;
-		//	cell3.innerHTML = data[ds].Lat;
-			
+		//	cell2.innerHTML = data[ds].squat;
+		//	cell3.innerHTML = data[ds].lat;
+
 			ds++;
-		}	
-		var next;		
+		}
+		var next;
 		next = getNextWorkout(ID);
-    	
+
 		var row = table.insertRow(s+1);
     	var cell0 = row.insertCell(0);
     	var cell1 = row.insertCell(1);
     	var cell2 = row.insertCell(2);
     	var cell3 = row.insertCell(3);
     	var cell4 = row.insertCell(4);
-    	
-    	cell0.innerHTML = next[0]; 
-    	cell1.innerHTML = next[1]; 
-    	cell2.innerHTML = next[2]; 
-    	cell3.innerHTML = next[3]; 
-    	cell4.innerHTML = next[4]; 
+
+    	cell0.innerHTML = next[0];
+    	cell1.innerHTML = next[1];
+    	cell2.innerHTML = next[2];
+    	cell3.innerHTML = next[3];
+    	cell4.innerHTML = next[4];
 }
 </script>
 
 <script>
 function getNextWorkout(day){
 	var toRet = ["Next", 0,0,0,0];
-	
+
 	switch(day){
 	 case "Push_Day":
 		 var len = push.length -1;
 		 toRet[0] = "Next Up";
-		 toRet[1] = round5(push[len].FlatBench + ((push[len].FlatBench - push[0].FlatBench) / len));
-		 toRet[2] = round5(push[len].InclineBench + ((push[len].InclineBench - push[0].InclineBench) / len));
-		 toRet[3] = round5(push[len].TricepExtention + ((push[len].TricepExtention - push[0].TricepExtention) / len));
-		 toRet[4] = round5(push[len].Arnolds + ((push[len].Arnolds - push[0].Arnolds) / len));
+		 toRet[1] = round5(push[len].flat_bench + ((push[len].flat_bench - push[0].flat_bench) / len));
+		 toRet[2] = round5(push[len].incline_bench + ((push[len].incline_bench - push[0].incline_bench) / len));
+		 toRet[3] = round5(push[len].tricep_extention + ((push[len].tricep_extention - push[0].tricep_extention) / len));
+		 toRet[4] = round5(push[len].arnolds + ((push[len].arnolds - push[0].arnolds) / len));
 		 break;
 	 case "Pull_Day":
 		 var len = pull.length -1;
 		 toRet[0] = "Next Up";
-		 toRet[1] = round5(pull[len].Deadlift + ((pull[len].Deadlift - pull[0].Deadlift) / len));
-		 toRet[2] = round5(pull[len].BentRows + ((pull[len].BentRows - pull[0].BentRows) / len));
-		 toRet[3] = round5(pull[len].BarbellCurls + ((pull[len].BarbellCurls - pull[0].BarbellCurls) / len));
-		 toRet[4] = round5(pull[len].Lat + ((pull[len].Lat - pull[0].Lat) / len));
+		 toRet[1] = round5(pull[len].dead_lift + ((pull[len].dead_lift - pull[0].dead_lift) / len));
+		 toRet[2] = round5(pull[len].bent_rows + ((pull[len].bent_rows - pull[0].bent_rows) / len));
+		 toRet[3] = round5(pull[len].barbell_curls + ((pull[len].barbell_curls - pull[0].barbell_curls) / len));
+		 toRet[4] = round5(pull[len].lat + ((pull[len].lat - pull[0].lat) / len));
 		 break;
 	 case "Leg_Day":
 		 var len = leg.length -1;
 		 toRet[0] = "Next Up";
-		 toRet[1] = round5(leg[len].Squat + ((leg[len].Squat - leg[0].Squat) / len));
-		 toRet[2] = round5(leg[len].LegPress + ((leg[len].LegPress - leg[0].LegPress) / len));
-		 toRet[3] = round5(leg[len].LegExtension + ((leg[len].LegExtension - leg[0].LegExtension) / len));
-		 toRet[4] = round5(leg[len].LegCurl + ((leg[len].LegCurl - leg[0].LegCurl) / len));
+		 toRet[1] = round5(leg[len].squat + ((leg[len].squat - leg[0].squat) / len));
+		 toRet[2] = round5(leg[len].leg_press + ((leg[len].leg_press - leg[0].leg_press) / len));
+		 toRet[3] = round5(leg[len].leg_extension + ((leg[len].leg_extension - leg[0].leg_extension) / len));
+		 toRet[4] = round5(leg[len].leg_curl + ((leg[len].leg_curl - leg[0].leg_curl) / len));
 		 break;
 	 default:
 		 break;
 	 }
-	
+
 	return toRet;
 }
 
@@ -506,7 +514,7 @@ function round5(x)
 <script src="https://www.amcharts.com/lib/3/serial.js"></script>
 <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
 <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
-<div style="width:100%; height:500px;" id="chartdiv"></div>			
+<div style="width:100%; height:500px;" id="chartdiv"></div>
 
 <script>
 
@@ -515,53 +523,59 @@ function round5(x)
 // generate some random data, quite different range
 function generateChartData() {
     var chartData = [];
-    var s = push.length;
-    //var firstDate = new Date();
-   // firstDate.setDate(firstDate.getDate() - 100);
-    
+    var s ;
+    //var firstdate = new date();
+   // firstdate.setdate(firstdate.getdate() - 100);
+
     if(theDay == "Push_Day"){
-    	console.log("yay");
+        s = push.length;
+    }
+    else if (theDay == "Pull_Day"){
+           s = pull.length;
+    }
+    else{
+           s = leg.length;
     }
 
         var done;// = push[0].FlatBench;
         var dtwo;// = push[0].InclineBench;
         var dthree;// = push[0].TricepExtension;
-        var dfour;// = push[0].Arnolds;
+        var dfour;// = push[0].arnolds;
         var ddate;
 
     for (var i = 0; i < s; i++) {
         // we create date objects here. In your data, you can have date strings
-        // and then set format of your dates using chart.dataDateFormat property,
+        // and then set format of your dates using chart.datadateFormat property,
         // however when possible, use date objects, as this will speed up chart rendering.
-       // var newDate = new Date(firstDate);
-       // newDate.setDate(newDate.getDate() + i);
-       
+       // var newdate = new date(firstdate);
+       // newdate.setdate(newdate.getdate() + i);
+
        switch(theDay){
        case "Push_Day":
-			 ddate   = push[i].Date;
-			 done   = push[i].FlatBench;
-			 dtwo   = push[i].InclineBench;
-			 dthree = push[i].TricepExtention;
-			 dfour  = push[i].Arnolds;
+			 ddate   = push[i].date;
+			 done   = push[i].flat_bench;
+			 dtwo   = push[i].incline_bench;
+			 dthree = push[i].tricep_extention;
+			 dfour  = push[i].arnolds;
 			 break;
 		 case "Pull_Day":
-			 ddate  = pull[i].Date;
-			 done   = pull[i].Deadlift;
-			 dtwo   = pull[i].BentRows;
-			 dthree = pull[i].BarbellCurls;
-			 dfour  = pull[i].Lat;
+			 ddate  = pull[i].date;
+			 done   = pull[i].dead_lift;
+			 dtwo   = pull[i].bent_rows;
+			 dthree = pull[i].barbell_curls;
+			 dfour  = pull[i].lat;
 			 break;
 		 case "Leg_Day":
-			 ddate  = leg[i].Date;
-			 done   = leg[i].Squat;
-			 dtwo   = leg[i].LegPress;
-			 dthree = leg[i].LegExtension;
-			 dfour  = leg[i].LegCurl;
+			 ddate  = leg[i].date;
+			 done   = leg[i].squat;
+			 dtwo   = leg[i].leg_press;
+			 dthree = leg[i].leg_extension;
+			 dfour  = leg[i].leg_curl;
 			 break;
 		 default:
 			 break;
-       
-       }         
+
+       }
 
         chartData.push({
             date: ddate,

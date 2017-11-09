@@ -41,6 +41,17 @@
 			$stmt->execute ();
 			return $stmt->fetchAll ( PDO::FETCH_ASSOC );
 		}
+    public function getClientsWorkout($workout,$id){
+      if ($workout=='push')
+        $stmt = $this->DB->prepare ( "SELECT * FROM push WHERE client_id=:id" );
+      else if ($workout=='pull')
+        $stmt = $this->DB->prepare ( "SELECT * FROM pull WHERE client_id=:id" );
+      else
+        $stmt = $this->DB->prepare ( "SELECT * FROM leg WHERE client_id=:id" );
+      $stmt->bindParam ( 'id', $id );
+      $stmt->execute ();
+      return $stmt->fetchAll ( PDO::FETCH_ASSOC );
+    }
 		// for login page
 		public function login($user) {
 			$_SESSION ['user'] = $user;

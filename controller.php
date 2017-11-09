@@ -5,8 +5,42 @@ session_start();
 }
 		$action = $_POST ['action'];
 
+// adding workouts
+if ($action === 'push') {
+	$client_id = $_POST['client_id'];
+	$trainer_id = $myDatabaseFunctions->getTrainerId($_SESSION['user'])['trainer_id'];
+	$date = $_POST['workout_date'];
+	$flat_bench = $_POST['flat_bench'];
+	$incline_bench = $_POST['incline_bench'];
+	$tri_ext = $_POST['tri_ext'];
+	$arnolds = $_POST['arnolds'];
+	
+	$myDatabaseFunctions->addPushWorkout($client_id, $trainer_id, $date, $flat_bench, $incline_bench, $tri_ext, $arnolds);
+}
+else if ($action === 'pull') {
+	$client_id = $_POST['client_id'];
+	$trainer_id = $myDatabaseFunctions->getTrainerId($_SESSION['user'])['trainer_id'];
+	$date = $_POST['workout_date'];
+	$dead_lift = $_POST['dead_lift'];
+	$bent_row = $_POST['bent_row'];
+	$barbell_curl = $_POST['barbell_curl'];
+	$lat = $_POST['lat'];
+	
+	$myDatabaseFunctions->addPullWorkout($client_id, $trainer_id, $date, $dead_lift, $bent_row, $barbell_curl, $lat);
+}
+else if ($action === 'leg') {
+	$client_id = $_POST['client_id'];
+	$trainer_id = $myDatabaseFunctions->getTrainerId($_SESSION['user'])['trainer_id'];
+	$date = $_POST['workout_date'];
+	$squat = $_POST['squat'];
+	$leg_press = $_POST['leg_press'];
+	$leg_ext = $_POST['leg_ext'];
+	$leg_curl = $_POST['leg_curl'];
+	
+	$myDatabaseFunctions->addLegWorkout($client_id, $trainer_id, $date, $squat, $leg_press, $leg_ext, $leg_curl);
+}
 // register and login
- if (isset ( $_POST ['username']) && isset ( $_POST ['email'] )  && ($action==='googleLogin') ){
+else if (isset ( $_POST ['username']) && isset ( $_POST ['email'] )  && ($action==='googleLogin') ){
 		$action = $_POST ['action'];
 			if ($action ==='googleLogin'){
 			$user = $_POST ['username'];
@@ -29,11 +63,10 @@ else if (isset ( $_POST ['username'] ) && isset ( $_POST ['password'] )) {
 	if ($action === 'login') {
 		if ($myDatabaseFunctions->isPasswordVerified ( $user, $pwd )) {
 			$myDatabaseFunctions->login ($user);
-				$_SESSION ['login'] = true;
 			header ( "Location: ./Main.php" );
 		} else {
 			$_SESSION['errorMessage'] = "Invalid Account/Password";
-			header ( "Location: ./index.php?mode=login" );
+			header ( "Location: ./Login.html" );
 		}
 	}
 
@@ -51,16 +84,7 @@ else if (isset ( $_POST ['username'] ) && isset ( $_POST ['password'] )) {
 
 // add client
 else if (isset($_POST['first_name'])) {
-	$month = $_POST['DOBMonth'];
-	$day = $_POST['DOBDay'];
-	$year = $_POST['DOBYear'];
-
-	if ((int)$month == 2 && (int)$day > 28)
-		$day = '28';
-	if (((int)$month == 4 || (int)$month == 6 || (int)$month == 9 || (int)$month == 11) && (int)$day > 30)
-		$day = '30';
-
-	$dob = $year . '-' . $month . '-' . $day;
+	$dob = $_POST['DOB'];
 	$trainer=$_SESSION['user'];
 	$getId = $myDatabaseFunctions->getTrainerId($trainer);
 	$myDatabaseFunctions->addClient($getId['trainer_id'],$_POST['first_name'], $_POST['last_name'], $_POST['client_sex'], $dob, $_POST['client_weight']);

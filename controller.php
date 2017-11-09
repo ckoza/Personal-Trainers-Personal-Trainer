@@ -14,7 +14,7 @@ if ($action === 'push') {
 	$incline_bench = $_POST['incline_bench'];
 	$tri_ext = $_POST['tri_ext'];
 	$arnolds = $_POST['arnolds'];
-	
+
 	$myDatabaseFunctions->addPushWorkout($client_id, $trainer_id, $date, $flat_bench, $incline_bench, $tri_ext, $arnolds);
 }
 else if ($action === 'pull') {
@@ -25,7 +25,7 @@ else if ($action === 'pull') {
 	$bent_row = $_POST['bent_row'];
 	$barbell_curl = $_POST['barbell_curl'];
 	$lat = $_POST['lat'];
-	
+
 	$myDatabaseFunctions->addPullWorkout($client_id, $trainer_id, $date, $dead_lift, $bent_row, $barbell_curl, $lat);
 }
 else if ($action === 'leg') {
@@ -36,7 +36,7 @@ else if ($action === 'leg') {
 	$leg_press = $_POST['leg_press'];
 	$leg_ext = $_POST['leg_ext'];
 	$leg_curl = $_POST['leg_curl'];
-	
+
 	$myDatabaseFunctions->addLegWorkout($client_id, $trainer_id, $date, $squat, $leg_press, $leg_ext, $leg_curl);
 }
 // register and login
@@ -44,6 +44,7 @@ else if (isset ( $_POST ['username']) && isset ( $_POST ['email'] )  && ($action
 		$action = $_POST ['action'];
 			if ($action ==='googleLogin'){
 			$user = $_POST ['username'];
+			$email = $_POST ['email'];
 			$pwd='';
 			$_SESSION ['user'] = $user;
 		 if ($myDatabaseFunctions->canRegisterTrainer($user)){

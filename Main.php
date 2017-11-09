@@ -33,8 +33,7 @@ session_start();
 </form>
 <!-- <p>
 <?php
-print_r($_SESSION['email']);
-echo "The user is ";
+ print_r($_SESSION['email']);
 ?>
 </p> -->
 <script>

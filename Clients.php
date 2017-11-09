@@ -2,9 +2,9 @@
 <html>
 <head>
 <script>
-for (var key in localStorage){
-   console.log(key)
-}
+// for (var key in localStorage){   -------what is this for?
+//    console.log(key)
+// }
 </script>
 <meta charset="UTF-8">
 <link href="style.css" type="text/css" rel="stylesheet" >
@@ -23,8 +23,6 @@ for (var key in localStorage){
     $user = $_SESSION ['user'];
     $getId = $myDatabaseFunctions->getTrainerId($user);
     $clientArray= $myDatabaseFunctions->getClientsAsArray($getId['trainer_id']);
-  //  print_r($newArray);
-
   }
 ?>
 
@@ -54,7 +52,7 @@ for (var key in localStorage){
   var data = <?php echo json_encode($clientArray); ?>;
 	var ds = 0;
 	var s = data.length;
-	console.log(s);
+	//console.log(s);
 	var table = document.getElementById("clients");
 	for(var i = 0; i < s; i++){
 		var row = table.insertRow(i+1);
@@ -92,7 +90,6 @@ for (var key in localStorage){
 
 <script type="text/javascript">
 function RowClicked(x){
-	console.log(x);
 	window.location.href = "Workout.php?client_id="+x;
 }
 

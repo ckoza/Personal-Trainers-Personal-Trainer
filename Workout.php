@@ -474,28 +474,28 @@ function getNextWorkout(day){
 
 	switch(day){
 	 case "Push_Day":
-		 var len = push.length -1;
+		 var len = push.length ;
 		 toRet[0] = "Next Up";
-		 toRet[1] = round5(push[len].flat_bench + ((push[len].flat_bench - push[0].flat_bench) / len));
-		 toRet[2] = round5(push[len].incline_bench + ((push[len].incline_bench - push[0].incline_bench) / len));
-		 toRet[3] = round5(push[len].tricep_extention + ((push[len].tricep_extention - push[0].tricep_extention) / len));
-		 toRet[4] = round5(push[len].arnolds + ((push[len].arnolds - push[0].arnolds) / len));
+		 toRet[1] = round5(parseInt(push[len-1].flat_bench) + parseInt((push[len-1].flat_bench - push[0].flat_bench) / len));
+		 toRet[2] = round5(parseInt(push[len-1].incline_bench) + parseInt((push[len-1].incline_bench - push[0].incline_bench) / len));
+		 toRet[3] = round5(parseInt(push[len-1].tricep_extention) + parseInt((push[len-1].tricep_extention - push[0].tricep_extention) / len));
+		 toRet[4] = round5(parseInt(push[len-1].arnolds) + parseInt((push[len-1].arnolds - push[0].arnolds) / len));
 		 break;
 	 case "Pull_Day":
-		 var len = pull.length -1;
+		 var len = pull.length ;
 		 toRet[0] = "Next Up";
-		 toRet[1] = round5(pull[len].dead_lift + ((pull[len].dead_lift - pull[0].dead_lift) / len));
-		 toRet[2] = round5(pull[len].bent_rows + ((pull[len].bent_rows - pull[0].bent_rows) / len));
-		 toRet[3] = round5(pull[len].barbell_curls + ((pull[len].barbell_curls - pull[0].barbell_curls) / len));
-		 toRet[4] = round5(pull[len].lat + ((pull[len].lat - pull[0].lat) / len));
+		 toRet[1] = round5(parseInt(pull[len-1].dead_lift) + parseInt((pull[len-1].dead_lift - pull[0].dead_lift) / len));
+		 toRet[2] = round5(parseInt(pull[len-1].bent_rows) + parseInt((pull[len-1].bent_rows - pull[0].bent_rows) / len));
+		 toRet[3] = round5(parseInt(pull[len-1].barbell_curls) + parseInt((pull[len-1].barbell_curls - pull[0].barbell_curls) / len));
+		 toRet[4] = round5(parseInt(pull[len-1].lat) + parseInt((pull[len-1].lat - pull[0].lat) / len));
 		 break;
 	 case "Leg_Day":
-		 var len = leg.length -1;
+		 var len = leg.length ;
 		 toRet[0] = "Next Up";
-		 toRet[1] = round5(leg[len].squat + ((leg[len].squat - leg[0].squat) / len));
-		 toRet[2] = round5(leg[len].leg_press + ((leg[len].leg_press - leg[0].leg_press) / len));
-		 toRet[3] = round5(leg[len].leg_extension + ((leg[len].leg_extension - leg[0].leg_extension) / len));
-		 toRet[4] = round5(leg[len].leg_curl + ((leg[len].leg_curl - leg[0].leg_curl) / len));
+		 toRet[1] = round5(parseInt(leg[len-1].squat) + parseInt((leg[len-1].squat - leg[0].squat) / len));
+		 toRet[2] = round5(parseInt(leg[len-1].leg_press) + parseInt((leg[len-1].leg_press - leg[0].leg_press) / len));
+		 toRet[3] = round5(parseInt(leg[len-1].leg_extension) + parseInt((leg[len-1].leg_extension - leg[0].leg_extension) / len));
+		 toRet[4] = round5(parseInt(leg[len-1].leg_curl) + parseInt((leg[len-1].leg_curl - leg[0].leg_curl) / len));
 		 break;
 	 default:
 		 break;

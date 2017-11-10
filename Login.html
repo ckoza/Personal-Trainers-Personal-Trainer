@@ -36,12 +36,11 @@
 	var email;
 	var action;
     function onSuccess(googleUser) {
-      console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
-			console.log('The email is: ' + googleUser.getBasicProfile().getEmail());
 			 username=googleUser.getBasicProfile().getName();
 			 email=googleUser.getBasicProfile().getEmail();
 			 action='googleLogin';
 			 loadDoc();
+	}
 // var theForm = document.forms['detParameterForm'];
 // // Add data:
 // 				addHidden(theForm, 'username', name);
@@ -52,14 +51,14 @@
 // 				theForm.submit();
 // //document.getElementById("myForm").submit();
 //
- }
  function loadDoc() {
 	 var xhttp = new XMLHttpRequest();
 	 xhttp.onreadystatechange = function() {
 		 if (this.readyState == 4 && this.status == 200) {
 
 			var returnEmail=this.responseText.trim();
-
+      console.log("returnEmail"+returnEmail+"\n");
+			 console.log("email"+email);
 			if (returnEmail==email){
 				console.log('The request is sucssasdaessful');
 			  window.location='index.php?mode=main';

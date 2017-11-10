@@ -476,12 +476,7 @@ function getNextWorkout(day){
 	 case "Push_Day":
 		 var len = push.length ;
 		 toRet[0] = "Next Up";
-     console.log(push[len-1].flat_bench);
-     console.log(push[0].flat_bench);
-     console.log(len);
 		 toRet[1] = round5(parseInt(push[len-1].flat_bench) + parseInt((push[len-1].flat_bench - push[0].flat_bench) / len));
-      console.log(push[len-1].flat_bench + (push[len-1].flat_bench - push[0].flat_bench) / len);
-      console.log(toRet[1]);
 		 toRet[2] = round5(parseInt(push[len-1].incline_bench) + parseInt((push[len-1].incline_bench - push[0].incline_bench) / len));
 		 toRet[3] = round5(parseInt(push[len-1].tricep_extention) + parseInt((push[len-1].tricep_extention - push[0].tricep_extention) / len));
 		 toRet[4] = round5(parseInt(push[len-1].arnolds) + parseInt((push[len-1].arnolds - push[0].arnolds) / len));

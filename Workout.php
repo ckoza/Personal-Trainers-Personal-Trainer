@@ -169,9 +169,9 @@ var leg = [
 	}
   else {
     require_once ("./DataBaseAdaptor.php");
-    $pushArray = $myDatabaseFunctions->getClientsWorkout('push',$_GET['client_id']);
-    $pullArray = $myDatabaseFunctions->getClientsWorkout('pull',$_GET['client_id']);
-    $legArray = $myDatabaseFunctions->getClientsWorkout('leg',$_GET['client_id']);
+    $pushArray = $myDatabaseFunctions->getClientsWorkout('push',$_SESSION['client_id']);
+    $pullArray = $myDatabaseFunctions->getClientsWorkout('pull',$_SESSION['client_id']);
+    $legArray = $myDatabaseFunctions->getClientsWorkout('leg',$_SESSION['client_id']);
   }
 ?>
 

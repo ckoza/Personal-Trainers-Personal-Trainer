@@ -9,6 +9,7 @@ for (var key in localStorage){
 <meta charset="UTF-8">
 <link href="style.css" type="text/css" rel="stylesheet" >
 <title>Clients Page</title>
+<base target="_parent">
 </head>
 
 <body>
@@ -80,26 +81,18 @@ for (var key in localStorage){
 		cell3.innerHTML = getAge(data[ds].dob);
 		cell4.innerHTML = data[ds].weight;
 
-		var button =  "<Button onclick='RowClicked(" +data[ds].client_id + ")'>View</Button>";
+		var button = '<form action="controller.php" method="post">' +
+		'<input type="hidden" name="client_id" value="' + data[ds].client_id + '">' +
+		'<input type="hidden" name="action" value="goToClientMain">' +
+		'<button type="submit" name="submit" value="ClientMain">View</button>' +
+		'</form>';
+
 		cell5.innerHTML = button;
 
-		//cell5.innerHTML =
 		ds++;
-
 	}
 
 </script>
-
-<script type="text/javascript">
-function RowClicked(x){
-	console.log(x);
-	window.location.href = "Workout.php?client_id="+x;
-}
-
-
-</script>
-
-
 </div>
 
 </body>

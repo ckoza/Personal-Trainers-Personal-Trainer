@@ -3,8 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="google-signin-client_id" content="1019396401836-pb91nphffsjarbkstvhd8vuuukgv199c.apps.googleusercontent.com">
-<script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
-<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+<script src="https://apis.google.com/js/api.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link href="style.css" type="text/css" rel="stylesheet">
 <title>Personal Assistants Personal Assistant</title>
@@ -28,98 +27,75 @@
 				<input style="width: 210px; margin: 10px;" type="submit" name="submit"
 					value="Login">
 			</form>
- <div style="margin:12px">
- <div id="my-signin2" style="margin:auto; width: 55%" ></div>
-</div>
-  <script>
-	var username;
-	var email;
-	var action;
-    function onSuccess(googleUser) {
-			 username=googleUser.getBasicProfile().getName();
-			 email=googleUser.getBasicProfile().getEmail();
-			 action='googleLogin';
-			 loadDoc();
-	}
-// var theForm = document.forms['detParameterForm'];
-// // Add data:
-// 				addHidden(theForm, 'username', name);
-// 				addHidden(theForm, 'email', email);
-// 				addHidden(theForm, 'action', action);
-//
-// // Submit the form:
-// 				theForm.submit();
-// //document.getElementById("myForm").submit();
-//
- function loadDoc() {
-	 var xhttp = new XMLHttpRequest();
-	 xhttp.onreadystatechange = function() {
-		 if (this.readyState == 4 && this.status == 200) {
-
-			var returnEmail=this.responseText.trim();
-      console.log("returnEmail"+returnEmail+"\n");
-			 console.log("email"+email);
-			if (returnEmail==email){
-				console.log('The request is sucssasdaessful');
-			  window.location='index.php?mode=main';
-      }
-			else
-			{
-			 signOut();
-			 console.log('email is '+email);
-			 console.log('returnEmail is '+returnEmail);
-	     document.getElementById("googleLoginError").innerHTML='The name is already registered';
-//       window.location='index.php?mode=login';
-			}
-		 }
-	 };
-	 xhttp.open("POST", "controller.php", true);
-	 xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	 xhttp.send("username="+username+"&email="+email+"&action="+action);
- }
-
- // function addHidden(theForm, key, value) {
- //     // Create a hidden input element, and append it to the form:
- //     var input = document.createElement('input');
- //     input.type = 'hidden';
- //     input.name = key; // 'the key/name of the attribute/field that is sent to the server
- //     input.value = value;
- //     theForm.appendChild(input);
- // }
- function onLoad() {
- 		 gapi.load('auth2', function() {
- 			 gapi.auth2.init();
- 		 });
- 	 }
- function signOut() {
- 	var auth2 = gapi.auth2.getAuthInstance();
- 	auth2.signOut().then(function () {
- 		auth2.disconnect();  //revoke authorization, prevent auto-login
- 		console.log('User signed out.');
- 	});
- }
-    function onFailure(error) {
-      console.log(error);
-    }
-    function renderButton() {
-      gapi.signin2.render('my-signin2', {
-        'scope': 'profile email',
-        'width': 210,
-        'height': 30,
-        'longtitle': true,
-        'theme': 'light',
-        'onsuccess': onSuccess,
-        'onfailure': onFailure
-      });
-    }
-  </script>
+ 		<div style="margin:12px">
+ 			<div id="my-signin2" style="margin:auto; width: 55%" ></div>
 		</div>
-			<button style="width: 110px; margin: 10px; color: black" onclick="addNewUser()">New User</button>
-	</div>
+		<script>
+			var username;
+			var email;
+			var action;
+    		function onSuccess(googleUser) {
+			 		username=googleUser.getBasicProfile().getName();
+			 		email=googleUser.getBasicProfile().getEmail();
+			 		action='googleLogin';
+			 		loadDoc();
+					}
+ 				function loadDoc() {
+	 				var xhttp = new XMLHttpRequest();
+	 				xhttp.onreadystatechange = function() {
+		 			if (this.readyState == 4 && this.status == 200) {
+							var returnEmail=this.responseText.trim();
+								if (returnEmail==email){
+									console.log('The request is sucssasdaessful');
+			  				window.location='index.php?mode=main';
+      					}
+								else
+									{
+			 							signOut();
+			 							console.log('email is '+email);
+			 							console.log('returnEmail is '+returnEmail);
+	     							document.getElementById("googleLoginError").innerHTML='The name is already registered';
+//       window.location='index.php?mode=login';
+									}
+		 						}
+	 					};
+	 						xhttp.open("POST", "controller.php", true);
+	 						xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	 						xhttp.send("username="+username+"&email="+email+"&action="+action);
+ 					}
 
-
-</body>
-
+ 					function onLoad() {
+ 		 					gapi.load('auth2', function() {
+ 			 				gapi.auth2.init();
+ 		 				});
+ 	 					}
+ 					function signOut() {
+ 						var auth2 = gapi.auth2.getAuthInstance();
+ 						auth2.signOut().then(function () {
+ 						auth2.disconnect();  //revoke authorization, prevent auto-login
+ 						console.log('User signed out.');
+ 					});
+ 					}
+				    function onFailure(error) {
+				      console.log(error);
+				    }
+				    function renderButton() {
+				      gapi.signin2.render('my-signin2', {
+				        'scope': 'profile email',
+				        'width': 210,
+				        'height': 30,
+				        'longtitle': true,
+				        'theme': 'light',
+				        'onsuccess': onSuccess,
+				        'onfailure': onFailure
+				      });
+				    }
+				  </script>
+						</div>
+							<button style="width: 110px; margin: 10px; color: black" onclick="addNewUser()">New User</button>
+					</div>
+				</body>
+<script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer>  /*this one is needed after renderButton function has been scanned*/</script>
 <script>
 	function addNewUser() {
 		window.location.href = "RegisterTrainer.html";

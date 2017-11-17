@@ -63,6 +63,12 @@
 			$stmt->bindParam ( 'weight', $weight );
 			$stmt->execute ();
 		}
+		// deletes client
+		public function deleteClient($id) {
+			$stmt = $this->DB->prepare ( "DELETE FROM clients WHERE client_id = :id" );
+			$stmt->bindParam ( 'id', $id );
+			$stmt->execute ();
+		}
 		public function getTrainerId($trainer) {
 			$stmt = $this->DB->prepare ( "SELECT trainer_id FROM trainers WHERE user_name=:trainer" );
       $lowercaseTrainer=$trainer;

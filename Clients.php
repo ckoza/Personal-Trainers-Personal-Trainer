@@ -35,7 +35,8 @@
 <th>Sex &nbsp;</th>
 <th>Age &nbsp;</th>
 <th>Weight &nbsp;</th>
-<th>Select</th>
+<th>View Client &nbsp;</th>
+<th>Delete Client</th>
 </tr>
 </table>
 
@@ -73,20 +74,31 @@
 		var cell5 = row.insertCell(5);
 		cell5.id="B_Row"+i;
 
+		var cell6 = row.insertCell(6);
+		cell6.id="B_Row"+i;
+
+		
 		cell0.innerHTML = data[ds].first_name;
 		cell1.innerHTML = data[ds].last_name;
 		cell2.innerHTML = data[ds].sex;
 		cell3.innerHTML = getAge(data[ds].dob);
 		cell4.innerHTML = data[ds].weight;
 
-		var button = '<form action="controller.php" method="post">' +
+		var viewButton = '<form action="controller.php" method="post">' +
 		'<input type="hidden" name="client_id" value="' + data[ds].client_id + '">' +
 		'<input type="hidden" name="action" value="goToClientMain">' +
 		'<button type="submit" name="submit" value="ClientMain">View</button>' +
 		'</form>';
+		
+		var deleteButton = '<form action="controller.php" method="post">' +
+		'<input type="hidden" name="client_id" value="' + data[ds].client_id + '">' +
+		'<input type="hidden" name="action" value="deleteClient">' +
+		'<button type="submit" name="submit" value="deleteClient">Delete</button>' +
+		'</form>';
 
-		cell5.innerHTML = button;
-
+		cell5.innerHTML = viewButton;
+		cell6.innerHTML = deleteButton;
+		
 		ds++;
 	}
 

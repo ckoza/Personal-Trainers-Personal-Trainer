@@ -7,10 +7,9 @@ $action = $_POST ['action'];
 
 // go to ClientMain
 if ($action === 'goToClientMain') {
-	$_SESSION['client_id'] = $_POST['client_id'];
+	$_SESSION ['client_id'] = $_POST ['client_id'];
 	header ( "Location: ./ClientMain.php" );
-}
-// adding workouts
+}// adding workouts
 else if ($action === 'push') {
 	$client_id = $_POST ['client_id'];
 	$trainer_id = $myDatabaseFunctions->getTrainerId ( $_SESSION ['user'] ) ['trainer_id'];
@@ -41,22 +40,18 @@ else if ($action === 'push') {
 	$leg_curl = $_POST ['leg_curl'];
 	
 	$myDatabaseFunctions->addLegWorkout ( $client_id, $trainer_id, $date, $squat, $leg_press, $leg_ext, $leg_curl );
-}// register and login
-else if (isset ( $_POST ['username'] ) && isset ( $_POST ['email'] ) && ($action === 'googleLogin')) {
-	$action = $_POST ['action'];
-	if ($action === 'googleLogin') {
-		$user = $_POST ['username'];
-		$pwd = '';
-		$_SESSION ['user'] = $user;
-		if ($myDatabaseFunctions->canRegisterTrainer ( $user )) {
-			$myDatabaseFunctions->registerTrainer ( $user, $pwd, $email );
-			$_SESSION ['login'] = true;
-		} else {
-			$_SESSION ['login'] = true;
-		} // in this case it is already registered
-	}
+} // register and login
+else if ($action === 'googleLogin') {
+	$user = $_POST ['username'];
+	$pwd = '';
+	$_SESSION ['user'] = $user;
+	if ($myDatabaseFunctions->canRegisterTrainer ( $user )) {
+		$myDatabaseFunctions->registerTrainer ( $user, $pwd, $email );
+		$_SESSION ['login'] = true;
+	} else {
+		$_SESSION ['login'] = true;
+	} // in this case it is already registered
 } else if (isset ( $_POST ['username'] ) && isset ( $_POST ['password'] )) {
-	$action = $_POST ['action'];
 	$user = $_POST ['username'];
 	$pwd = $_POST ['password'];
 	
@@ -82,12 +77,16 @@ else if (isset ( $_POST ['username'] ) && isset ( $_POST ['email'] ) && ($action
 	}
 }
 // add client
-else if (isset ( $_POST ['first_name'] )) {
-	$dob = $_POST ['DOB'];
+else if ($action === 'addClient') {
 	$trainer = $_SESSION ['user'];
 	$getId = $myDatabaseFunctions->getTrainerId ( $trainer );
-	$myDatabaseFunctions->addClient ( $getId ['trainer_id'], $_POST ['first_name'], $_POST ['last_name'], $_POST ['client_sex'], $dob, $_POST ['client_weight'] );
+	$myDatabaseFunctions->addClient ( $getId ['trainer_id'], $_POST ['first_name'], $_POST ['last_name'], $_POST ['client_sex'], $_POST ['DOB'], $_POST ['client_weight'] );
 	header ( "Location: ./Clients.php" );
+}
+// delete client
+else if ($action === 'deleteClient') {
+	$myDatabaseFunctions->deleteClient ($_POST ['client_id']);
+	header ( "Location: ./Main.php" );
 }
 // logout
 else if ($action === 'logout') {

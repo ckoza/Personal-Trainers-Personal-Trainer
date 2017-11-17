@@ -28,6 +28,11 @@
 					name="last_name" required>
 			</div>
 			<div>
+				<label for="phone_number">Phone Number:</label> <input
+					style="width: 200px; margin: 10px;" type="text" id="phone_number"
+					name="phone_number" placeholder="xxx-xxx-xxxx" pattern="^\d{3}-\d{3}-\d{4}$" required>
+			</div>
+			<div>
 				<label for="sex">Sex:</label> <input
 					style="width: 200px; margin: 10px;" type="text" id="sex"
 					name="client_sex" required>
@@ -41,7 +46,7 @@
 					style="width: 200px; margin: 10px;" type="text" id="weight"
 					name="client_weight" required>
 			</div>
-
+			<input type="hidden" name="action" value="addClient">
 			<div class="button">
 				<button type="submit">Add new client</button>
 			</div>

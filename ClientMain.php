@@ -16,7 +16,7 @@ if (!isset($_SESSION['login']) || !$_SESSION['login']) {
 }
 ?>
 
-<header><h2 class="headfoot">Add a Workout</h2></header>
+<header><h2 class="headfoot">Client Page</h2></header>
 
 <div class="main">
 <button onclick="home()">Home</button>

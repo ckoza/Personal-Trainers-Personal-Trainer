@@ -113,7 +113,7 @@
 			$stmt->execute ();
 			$userArray = $stmt->fetchAll ( PDO::FETCH_COLUMN );
 
-			if (in_array ( $user, $userArray )) {
+			if (in_array ($user, $userArray)) {
 				$stmt = $this->DB->prepare ( "SELECT email FROM trainers WHERE user_name=:user" );
 				$stmt->bindParam ( 'user', $user );
 				$stmt->execute ();
@@ -129,11 +129,14 @@
 		// used to register a new trainer
 		public function registerTrainer($user, $pwd, $email) {
 			$hashed_pwd = password_hash ( $pwd, PASSWORD_DEFAULT );
-			$stmt = $this->DB->prepare ( "INSERT INTO trainers (user_name, password, email) values(:user, :password, :email)" );
+			$stmt = $this->DB->prepare ( "INSERT INTO trainers (user_name, password, email,gmail) values(:user, :password, :email,:gmail)" );
       $lowercaseUser=strtolower ( $user );
 			$stmt->bindParam ( 'user', $lowercaseUser);
 			$stmt->bindParam ( 'password', $hashed_pwd );
 			$stmt->bindParam ( 'email', $email );
+      if (strpos($email, 'gmail.com') !== false) {
+      $stmt->bindParam ( 'gmail', $email );
+      }
 			$stmt->execute ();
 		}
 		// call before logging in. Checks if the password is correct.
@@ -145,6 +148,23 @@
 			$hash = $stmt->fetch ();
 			return password_verify ( $pwd, $hash [0] );
 		}
+    public function getGmail($user) {
+      $stmt = $this->DB->prepare ( "SELECT gmail FROM trainers WHERE user_name=:user" );
+      $lowercaseUser=strtolower ( $user );
+      $stmt->bindParam ( 'user',$lowercaseUser );
+      $stmt->execute ();
+      $gmail = $stmt->fetch ();
+      return $gmail[0];
+    }
+    public function updateGmail($user,$gmail) {
+      $stmt = $this->DB->prepare ( "UPDATE trainers SET gmail=:gmail WHERE user_name=:user" );
+      $lowercaseUser=strtolower ( $user );
+      $stmt->bindParam ( 'user',$lowercaseUser );
+      $lowercaseGmail=strtolower ( $gmail );
+      $stmt->bindParam ( 'gmail',$lowercaseGmail );
+      $stmt->execute ();
+      return;
+    }
 	}
 
 	$myDatabaseFunctions = new DatabaseAdaptor ();

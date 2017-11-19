@@ -47,7 +47,7 @@
 						if (this.readyState == 4 && this.status == 200) {
 							var returnEmail = this.responseText.trim();
 							if (returnEmail == email) {
-								window.location = 'main.php';
+								window.location = 'Main.php';
 							} else {
 								signOut();
 								document.getElementById("googleLoginError").innerHTML = 'The name is already registered';

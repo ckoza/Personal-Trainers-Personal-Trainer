@@ -9,7 +9,6 @@
 <body class="body">
 	<?php
 	session_start();
-
 if (isset ( $_GET ['mode'] )) {
   if ($_GET ['mode'] === 'register')
     require_once ("./RegisterTrainer.html");

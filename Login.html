@@ -47,12 +47,9 @@
 						if (this.readyState == 4 && this.status == 200) {
 							var returnEmail = this.responseText.trim();
 							if (returnEmail == email) {
-								console.log('The request is sucssasdaessful');
 								window.location = 'main.php';
 							} else {
 								signOut();
-								console.log('email is ' + email);
-								console.log('returnEmail is ' + returnEmail);
 								document.getElementById("googleLoginError").innerHTML = 'The name is already registered';
 							}
 						}

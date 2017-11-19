@@ -36,6 +36,7 @@
 <th>Age &nbsp;</th>
 <th>Weight &nbsp;</th>
 <th>View Client &nbsp;</th>
+<th>Update Measurements &nbsp;</th>
 <th>Delete Client</th>
 </tr>
 </table>
@@ -70,14 +71,13 @@
 		cell3.id=i+"_Cell3";
 		var cell4 = row.insertCell(4);
 		cell4.id=i+"_Cell4";
-
 		var cell5 = row.insertCell(5);
 		cell5.id="B_Row"+i;
-
 		var cell6 = row.insertCell(6);
 		cell6.id="B_Row"+i;
+		var cell7 = row.insertCell(7);
+		cell7.id="B_Row"+i;
 
-		
 		cell0.innerHTML = data[ds].first_name;
 		cell1.innerHTML = data[ds].last_name;
 		cell2.innerHTML = data[ds].sex;
@@ -89,7 +89,11 @@
 		'<input type="hidden" name="action" value="goToClientMain">' +
 		'<button type="submit" name="submit" value="ClientMain">View</button>' +
 		'</form>';
-		
+		var measurementsButton = '<form action="controller.php" method="post">' +
+		'<input type="hidden" name="client_id" value="' + data[ds].client_id + '">' +
+		'<input type="hidden" name="action" value="goToMeasurements">' +
+		'<button type="submit" name="submit" value="goToMeasurements">Update</button>' +
+		'</form>';
 		var deleteButton = '<form action="controller.php" method="post">' +
 		'<input type="hidden" name="client_id" value="' + data[ds].client_id + '">' +
 		'<input type="hidden" name="action" value="deleteClient">' +
@@ -97,8 +101,9 @@
 		'</form>';
 
 		cell5.innerHTML = viewButton;
-		cell6.innerHTML = deleteButton;
-		
+		cell6.innerHTML = measurementsButton;
+		cell7.innerHTML = deleteButton;
+
 		ds++;
 	}
 

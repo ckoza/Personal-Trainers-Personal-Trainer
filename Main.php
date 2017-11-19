@@ -10,13 +10,18 @@
 </head>
 <body class="body">
 <?php
-if (!isset($_SESSION)) {
-session_start();
-}
-	if (!isset($_SESSION['login']) || !$_SESSION['login']) {
-		header ( "Location: ./Login.html" );
-		die;
-	}
+		if (!isset($_SESSION)) {
+		session_start();
+		}
+		if (!isset($_SESSION['login']) || !$_SESSION['login']) {
+			header ( "Location: ./Login.html" );
+			die;
+		}
+ 		else {
+			$mode="Clients.php";
+			if (isset($_GET['mode']) && $_GET['mode']=="bodySize.php")
+					$mode="bodySize.php";
+		}
 ?>
 
 <header><h2 class="headfoot">Personal Trainers Personal Assistant</h2></header>
@@ -25,16 +30,12 @@ session_start();
 <button onclick="clients()">View Clients</button>
 <button onclick="newClient()">Add New Client</button>
 <button onclick="calendar()">View Calender</button>
-<button onclick="bodySize()">Measurements</button>
 <button onclick="examples()">View Examples</button>
 
 <form action="controller.php" method="post">
 <button href="Login.html" name="action" value="logout" onclick="signOut();" name="action" value="logout">Log Out</button>
 </form>
 <!-- <p>
-<?php
- print_r($_SESSION['email']);
-?>
 </p> -->
 <script>
 function clients(){
@@ -49,9 +50,9 @@ function calendar(){
 function examples(){
 	document.getElementById('section').src = "Examples.php";
 }
-function bodySize(){
-	document.getElementById('section').src = "bodySize.php";
-}
+// function bodySize(){
+// 	document.getElementById('section').src = "bodySize.php";
+// }
 </script>
 
 <script>
@@ -69,7 +70,10 @@ function signOut() {
 }
 </script>
 </div>
-<iframe id="section" src="Clients.php"></iframe>
+<?php
+  $str = "<iframe id=\"section\" src=\"".$mode."\"></iframe>";
+	echo $str;
+?>
 <footer><h3 class="headfoot">Fitness Bros</h3></footer>
 </body>
 </html>

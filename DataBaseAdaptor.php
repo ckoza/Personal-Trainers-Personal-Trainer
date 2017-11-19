@@ -120,7 +120,7 @@
 				$emailArray = $stmt->fetch ();
 				$_SESSION ['email'] = $emailArray [0];
 				$_SESSION ['errorMessage'] = "Account already exists";
-				echo $emailArray [0];
+				$_SESSION['returnEmail'] =  $emailArray[0];
 				return false;
 			} else {
 				return true;
@@ -162,6 +162,26 @@
       $stmt->bindParam ( 'user',$lowercaseUser );
       $lowercaseGmail=strtolower ( $gmail );
       $stmt->bindParam ( 'gmail',$lowercaseGmail );
+      $stmt->execute ();
+      return;
+    }
+    public function queryMeasurements($clentID){
+      $stmt = $this->DB->prepare ( "SELECT * FROM clients WHERE client_id=:id" );
+      $stmt->bindParam ( 'id',$clentID );
+      $stmt->execute ();
+      $query = $stmt->fetchAll ( PDO::FETCH_ASSOC );
+      return $query;
+    }
+    public function updateMeasurements($clentID,$chest,$waist,$l_bicep,$r_bicep,$l_leg,$r_leg){
+      $stmt = $this->DB->prepare ( "UPDATE clients SET chest=:chest,waist=:waist,l_bicep=:l_bicep,
+                                  r_bicep=:r_bicep,l_leg=:l_leg,r_leg=:r_leg WHERE client_id=:id" );
+      $stmt->bindParam ( 'id',$clentID );
+      $stmt->bindParam ( 'chest',$chest );
+      $stmt->bindParam ( 'waist',$waist );
+      $stmt->bindParam ( 'l_bicep',$l_bicep);
+      $stmt->bindParam ( 'r_bicep',$r_bicep);
+      $stmt->bindParam ( 'l_leg',$l_leg );
+      $stmt->bindParam ( 'r_leg',$r_leg );
       $stmt->execute ();
       return;
     }

@@ -3,13 +3,24 @@ require_once './DataBaseAdaptor.php';
 if (! isset ( $_SESSION )) {
 	session_start ();
 }
-  $action = $_POST ['action'];
+  $action = $_POST['action'];
 
 if ($action === 'updateGmail'){
   $user = $_SESSION['user'];
   $gmail = $_POST['gmail'];
   $myDatabaseFunctions->updateGmail($user,$gmail);
 	header ( "Location: ./calender.php" );
+}
+else if ($action === 'goToMeasurements'){
+	$_SESSION ['client_id'] = $_POST ['client_id'];
+	header ( "Location: ./Main.php?mode=bodySize.php" );
+}
+else if ($action === 'updateMeasurements'){
+	$id = $_SESSION['client_id'];
+	$myDatabaseFunctions->updateMeasurements($id,$_POST['chest'],$_POST['waist'],$_POST['l_bicep'],
+																					$_POST['r_bicep'],$_POST['l_leg'],$_POST['r_leg']);
+ 		$s="succeeded";
+		echo $s;
 }
 // go to ClientMain
 else if ($action === 'goToClientMain') {
@@ -58,6 +69,7 @@ else if ($action === 'googleLogin') {
 			$myDatabaseFunctions->registerTrainer ( $user, $pwd, $email );
 			$_SESSION ['login'] = true;
 		} else {
+			echo $_SESSION['returnEmail'];// send data into responseText
 			$_SESSION ['login'] = true;
 		} // in this case it is already registered
 	}

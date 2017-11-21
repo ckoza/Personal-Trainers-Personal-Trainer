@@ -7,7 +7,7 @@
 			$db = 'mysql:dbname=PTPA_DATABASE;host=ptpa.c2ihxd5ursch.us-west-1.rds.amazonaws.com:3306';
 			$user = 'root';
 			$password = '12345678';
-
+			
 			try {
 				$this->DB = new PDO ( $db, $user, $password );
 				$this->DB->setAttribute ( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
@@ -71,12 +71,12 @@
 		}
 		public function getTrainerId($trainer) {
 			$stmt = $this->DB->prepare ( "SELECT trainer_id FROM trainers WHERE user_name=:trainer" );
-      $lowercaseTrainer=$trainer;
+			$lowercaseTrainer = $trainer;
 			$stmt->bindParam ( 'trainer', $lowercaseTrainer );
 			$stmt->execute ();
 			return $stmt->fetch ( PDO::FETCH_ASSOC );
 		}
-
+		
 		// $trainer is the variable used in the belongs_to field for the client
 		public function getClientsAsArray($id) {
 			$stmt = $this->DB->prepare ( "SELECT * FROM clients WHERE belongs_to_id=:id" );
@@ -84,17 +84,17 @@
 			$stmt->execute ();
 			return $stmt->fetchAll ( PDO::FETCH_ASSOC );
 		}
-    public function getClientsWorkout($workout,$id){
-      if ($workout=='push')
-        $stmt = $this->DB->prepare ( "SELECT * FROM push WHERE client_id=:id" );
-      else if ($workout=='pull')
-        $stmt = $this->DB->prepare ( "SELECT * FROM pull WHERE client_id=:id" );
-      else
-        $stmt = $this->DB->prepare ( "SELECT * FROM leg WHERE client_id=:id" );
-      $stmt->bindParam ( 'id', $id );
-      $stmt->execute ();
-      return $stmt->fetchAll ( PDO::FETCH_ASSOC );
-    }
+		public function getClientsWorkout($workout, $id) {
+			if ($workout == 'push')
+				$stmt = $this->DB->prepare ( "SELECT * FROM push WHERE client_id=:id" );
+			else if ($workout == 'pull')
+				$stmt = $this->DB->prepare ( "SELECT * FROM pull WHERE client_id=:id" );
+			else
+				$stmt = $this->DB->prepare ( "SELECT * FROM leg WHERE client_id=:id" );
+			$stmt->bindParam ( 'id', $id );
+			$stmt->execute ();
+			return $stmt->fetchAll ( PDO::FETCH_ASSOC );
+		}
 		// for login page
 		public function login($user) {
 			$_SESSION ['user'] = strtolower ( $user );
@@ -112,15 +112,15 @@
 			$stmt = $this->DB->prepare ( "SELECT user_name FROM trainers" );
 			$stmt->execute ();
 			$userArray = $stmt->fetchAll ( PDO::FETCH_COLUMN );
-
-			if (in_array ($user, $userArray)) {
+			
+			if (in_array ( $user, $userArray )) {
 				$stmt = $this->DB->prepare ( "SELECT email FROM trainers WHERE user_name=:user" );
 				$stmt->bindParam ( 'user', $user );
 				$stmt->execute ();
 				$emailArray = $stmt->fetch ();
 				$_SESSION ['email'] = $emailArray [0];
 				$_SESSION ['errorMessage'] = "Account already exists";
-				$_SESSION['returnEmail'] =  $emailArray[0];
+				$_SESSION ['returnEmail'] = $emailArray [0];
 				return false;
 			} else {
 				return true;
@@ -130,62 +130,62 @@
 		public function registerTrainer($user, $pwd, $email) {
 			$hashed_pwd = password_hash ( $pwd, PASSWORD_DEFAULT );
 			$stmt = $this->DB->prepare ( "INSERT INTO trainers (user_name, password, email,gmail) values(:user, :password, :email,:gmail)" );
-      $lowercaseUser=strtolower ( $user );
-			$stmt->bindParam ( 'user', $lowercaseUser);
+			$lowercaseUser = strtolower ( $user );
+			$stmt->bindParam ( 'user', $lowercaseUser );
 			$stmt->bindParam ( 'password', $hashed_pwd );
 			$stmt->bindParam ( 'email', $email );
-      if (strpos($email, 'gmail.com') !== false) {
-      $stmt->bindParam ( 'gmail', $email );
-      }
+			if (strpos ( $email, 'gmail.com' ) !== false) {
+				$stmt->bindParam ( 'gmail', $email );
+			}
 			$stmt->execute ();
 		}
 		// call before logging in. Checks if the password is correct.
 		public function isPasswordVerified($user, $pwd) {
 			$stmt = $this->DB->prepare ( "SELECT password FROM trainers WHERE user_name=:user" );
-      $lowercaseUser=strtolower ( $user );
-			$stmt->bindParam ( 'user',$lowercaseUser );
+			$lowercaseUser = strtolower ( $user );
+			$stmt->bindParam ( 'user', $lowercaseUser );
 			$stmt->execute ();
 			$hash = $stmt->fetch ();
 			return password_verify ( $pwd, $hash [0] );
 		}
-    public function getGmail($user) {
-      $stmt = $this->DB->prepare ( "SELECT gmail FROM trainers WHERE user_name=:user" );
-      $lowercaseUser=strtolower ( $user );
-      $stmt->bindParam ( 'user',$lowercaseUser );
-      $stmt->execute ();
-      $gmail = $stmt->fetch ();
-      return $gmail[0];
-    }
-    public function updateGmail($user,$gmail) {
-      $stmt = $this->DB->prepare ( "UPDATE trainers SET gmail=:gmail WHERE user_name=:user" );
-      $lowercaseUser=strtolower ( $user );
-      $stmt->bindParam ( 'user',$lowercaseUser );
-      $lowercaseGmail=strtolower ( $gmail );
-      $stmt->bindParam ( 'gmail',$lowercaseGmail );
-      $stmt->execute ();
-      return;
-    }
-    public function queryMeasurements($clentID){
-      $stmt = $this->DB->prepare ( "SELECT * FROM clients WHERE client_id=:id" );
-      $stmt->bindParam ( 'id',$clentID );
-      $stmt->execute ();
-      $query = $stmt->fetchAll ( PDO::FETCH_ASSOC );
-      return $query;
-    }
-    public function updateMeasurements($clentID,$chest,$waist,$l_bicep,$r_bicep,$l_leg,$r_leg){
-      $stmt = $this->DB->prepare ( "UPDATE clients SET chest=:chest,waist=:waist,l_bicep=:l_bicep,
+		public function getGmail($user) {
+			$stmt = $this->DB->prepare ( "SELECT gmail FROM trainers WHERE user_name=:user" );
+			$lowercaseUser = strtolower ( $user );
+			$stmt->bindParam ( 'user', $lowercaseUser );
+			$stmt->execute ();
+			$gmail = $stmt->fetch ();
+			return $gmail [0];
+		}
+		public function updateGmail($user, $gmail) {
+			$stmt = $this->DB->prepare ( "UPDATE trainers SET gmail=:gmail WHERE user_name=:user" );
+			$lowercaseUser = strtolower ( $user );
+			$stmt->bindParam ( 'user', $lowercaseUser );
+			$lowercaseGmail = strtolower ( $gmail );
+			$stmt->bindParam ( 'gmail', $lowercaseGmail );
+			$stmt->execute ();
+			return;
+		}
+		public function queryMeasurements($clentID) {
+			$stmt = $this->DB->prepare ( "SELECT * FROM clients WHERE client_id=:id" );
+			$stmt->bindParam ( 'id', $clentID );
+			$stmt->execute ();
+			$query = $stmt->fetchAll ( PDO::FETCH_ASSOC );
+			return $query;
+		}
+		public function updateMeasurements($clentID, $chest, $waist, $l_bicep, $r_bicep, $l_leg, $r_leg) {
+			$stmt = $this->DB->prepare ( "UPDATE clients SET chest=:chest,waist=:waist,l_bicep=:l_bicep,
                                   r_bicep=:r_bicep,l_leg=:l_leg,r_leg=:r_leg WHERE client_id=:id" );
-      $stmt->bindParam ( 'id',$clentID );
-      $stmt->bindParam ( 'chest',$chest );
-      $stmt->bindParam ( 'waist',$waist );
-      $stmt->bindParam ( 'l_bicep',$l_bicep);
-      $stmt->bindParam ( 'r_bicep',$r_bicep);
-      $stmt->bindParam ( 'l_leg',$l_leg );
-      $stmt->bindParam ( 'r_leg',$r_leg );
-      $stmt->execute ();
-      return;
-    }
+			$stmt->bindParam ( 'id', $clentID );
+			$stmt->bindParam ( 'chest', $chest );
+			$stmt->bindParam ( 'waist', $waist );
+			$stmt->bindParam ( 'l_bicep', $l_bicep );
+			$stmt->bindParam ( 'r_bicep', $r_bicep );
+			$stmt->bindParam ( 'l_leg', $l_leg );
+			$stmt->bindParam ( 'r_leg', $r_leg );
+			$stmt->execute ();
+			return;
+		}
 	}
-
+	
 	$myDatabaseFunctions = new DatabaseAdaptor ();
 	?>

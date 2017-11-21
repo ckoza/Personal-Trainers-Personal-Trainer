@@ -22,6 +22,7 @@ if (!isset($_SESSION['login']) || !$_SESSION['login']) {
 <button onclick="home()">Home</button>
 <button onclick="viewHistory()">View History</button>
 <button onclick="addWorkout()">Add Workout</button>
+<button onclick="updateMeasurements()">Update Measurements</button>
 
 <script>
 function home(){
@@ -32,6 +33,9 @@ function viewHistory(){
 }
 function addWorkout(){
 	document.getElementById('section').src = "AddWorkout.php";
+}
+function updateMeasurements() {
+	document.getElementById('section').src = "bodySize.php";
 }
 </script>
 </div>

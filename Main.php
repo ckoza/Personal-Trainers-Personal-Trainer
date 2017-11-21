@@ -10,18 +10,13 @@
 </head>
 <body class="body">
 <?php
-		if (!isset($_SESSION)) {
+	if (!isset($_SESSION)) {
 		session_start();
-		}
-		if (!isset($_SESSION['login']) || !$_SESSION['login']) {
-			header ( "Location: ./Login.html" );
-			die;
-		}
- 		else {
-			$mode="Clients.php";
-			if (isset($_GET['mode']) && $_GET['mode']=="bodySize.php")
-					$mode="bodySize.php";
-		}
+	}
+	if (!isset($_SESSION['login']) || !$_SESSION['login']) {
+		header ( "Location: ./Login.html" );
+		die;
+	}
 ?>
 
 <header><h2 class="headfoot">Personal Trainers Personal Assistant</h2></header>
@@ -50,9 +45,6 @@ function calendar(){
 function examples(){
 	document.getElementById('section').src = "Examples.php";
 }
-// function bodySize(){
-// 	document.getElementById('section').src = "bodySize.php";
-// }
 </script>
 
 <script>
@@ -70,10 +62,9 @@ function signOut() {
 }
 </script>
 </div>
-<?php
-  $str = "<iframe id=\"section\" src=\"".$mode."\"></iframe>";
-	echo $str;
-?>
+
+<iframe id="section" src="Clients.php"></iframe>
+
 <footer><h3 class="headfoot">Fitness Bros</h3></footer>
 </body>
 </html>

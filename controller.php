@@ -13,7 +13,7 @@ if ($action === 'updateGmail'){
 }
 else if ($action === 'goToMeasurements'){
 	$_SESSION ['client_id'] = $_POST ['client_id'];
-	header ( "Location: ./Main.php?mode=bodySize.php" );
+	header ( "Location: ./bodySize.php" );
 }
 else if ($action === 'updateMeasurements'){
 	$id = $_SESSION['client_id'];

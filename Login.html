@@ -2,12 +2,14 @@
 <html>
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="google-signin-client_id" content="1019396401836-pb91nphffsjarbkstvhd8vuuukgv199c.apps.googleusercontent.com">
-	<script src="https://apis.google.com/js/api.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<link href="style.css" type="text/css" rel="stylesheet">
-	<title>Personal Assistants Personal Assistant</title>
+<meta charset="UTF-8">
+<meta name="google-signin-client_id"
+	content="1019396401836-pb91nphffsjarbkstvhd8vuuukgv199c.apps.googleusercontent.com">
+<script src="https://apis.google.com/js/api.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link href="style.css" type="text/css" rel="stylesheet">
+<title>Personal Assistants Personal Assistant</title>
 </head>
 
 <body>
@@ -21,13 +23,16 @@
 				?>
 			</div>
 			<form action="controller.php" method="post">
-				<input style="width: 200px; margin: 10px;" type="text" placeholder="User Name" name="username" pattern=".{1,}" required>
-				<input style="width: 200px; margin: 10px;" type="password" placeholder="Password" name="password" pattern=".{1,}" required>
-				<input type="hidden" name="action" value="login">
-				<input style="width: 210px; margin: 10px;" type="submit" name="submit" value="Login">
+				<input style="width: 200px; margin: 10px;" type="text"
+					placeholder="User Name" name="username" pattern=".{1,}" required>
+				<input style="width: 200px; margin: 10px;" type="password"
+					placeholder="Password" name="password" pattern=".{1,}" required>
+				<input type="hidden" name="action" value="login"> <input
+					style="width: 210px; margin: 10px;" type="submit" name="submit"
+					value="Login">
 			</form>
-			<div style="margin:12px">
-				<div id="my-signin2" style="margin:auto; width: 55%"></div>
+			<div style="margin: 12px">
+				<div id="my-signin2" style="margin: auto; width: 55%"></div>
 			</div>
 			<script>
 				var username;
@@ -55,8 +60,10 @@
 						}
 					};
 					xhttp.open("POST", "controller.php", true);
-					xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-					xhttp.send("username=" + username + "&email=" + email + "&action=" + action);
+					xhttp.setRequestHeader("Content-type",
+							"application/x-www-form-urlencoded");
+					xhttp.send("username=" + username + "&email=" + email
+							+ "&action=" + action);
 				}
 
 				function onLoad() {
@@ -79,21 +86,23 @@
 
 				function renderButton() {
 					gapi.signin2.render('my-signin2', {
-						'scope': 'profile email',
-						'width': 210,
-						'height': 30,
-						'longtitle': true,
-						'theme': 'light',
-						'onsuccess': onSuccess,
-						'onfailure': onFailure
+						'scope' : 'profile email',
+						'width' : 210,
+						'height' : 30,
+						'longtitle' : true,
+						'theme' : 'light',
+						'onsuccess' : onSuccess,
+						'onfailure' : onFailure
 					});
 				}
 			</script>
 		</div>
-		<button style="width: 110px; margin: 10px; color: black" onclick="addNewUser()">New User</button>
+		<button style="width: 110px; margin: 10px; color: black"
+			onclick="addNewUser()">New User</button>
 	</div>
 </body>
-<script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer>
+<script src="https://apis.google.com/js/platform.js?onload=renderButton"
+	async defer>
 	/*this one is needed after renderButton function has been scanned*/
 </script>
 <script>

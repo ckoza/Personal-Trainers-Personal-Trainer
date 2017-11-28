@@ -27,7 +27,7 @@ var data = [
 		die;
 	}
   else{
-    $query = $myDatabaseFunctions->queryMeasurements($_SESSION ['client_id']);
+    $query = $myDatabaseFunctions->getClientInfo($_SESSION ['client_id']);
   }
 
 ?>

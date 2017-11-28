@@ -163,9 +163,8 @@
 			$lowercaseGmail = strtolower ( $gmail );
 			$stmt->bindParam ( 'gmail', $lowercaseGmail );
 			$stmt->execute ();
-			return;
 		}
-		public function queryMeasurements($clentID) {
+		public function getClientInfo($clentID) {
 			$stmt = $this->DB->prepare ( "SELECT * FROM clients WHERE client_id=:id" );
 			$stmt->bindParam ( 'id', $clentID );
 			$stmt->execute ();
@@ -183,8 +182,31 @@
 			$stmt->bindParam ( 'l_leg', $l_leg );
 			$stmt->bindParam ( 'r_leg', $r_leg );
 			$stmt->execute ();
-			return;
 		}
+		public function updatePhoneNumber($clentID, $phone) {
+			$stmt = $this->DB->prepare ( "UPDATE clients SET phone_number=:phone WHERE client_id=:id" );
+			$stmt->bindParam ( 'id', $clentID );
+			$stmt->bindParam ( 'phone', $phone );
+			$stmt->execute ();
+		}
+		public function updateWeight($clentID, $weight) {
+			$stmt = $this->DB->prepare ( "UPDATE clients SET weight=:weight WHERE client_id=:id" );
+			$stmt->bindParam ( 'id', $clentID );
+			$stmt->bindParam ( 'weight', $weight );
+			$stmt->execute ();
+		}
+		public function updateLastContacted($clentID, $date) {
+			$stmt = $this->DB->prepare ( "UPDATE clients SET last_talked=:date WHERE client_id=:id" );
+			$stmt->bindParam ( 'id', $clentID );
+			$stmt->bindParam ( 'date', $date );
+			$stmt->execute ();
+		}
+		public function updateLastVisited($clentID, $date) {
+			$stmt = $this->DB->prepare ( "UPDATE clients SET last_visit=:date WHERE client_id=:id" );
+			$stmt->bindParam ( 'id', $clentID );
+			$stmt->bindParam ( 'date', $date );
+			$stmt->execute ();
+		}		
 	}
 	
 	$myDatabaseFunctions = new DatabaseAdaptor ();

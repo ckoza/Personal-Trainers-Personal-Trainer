@@ -20,6 +20,7 @@ if (!isset($_SESSION['login']) || !$_SESSION['login']) {
 
 <div class="main">
 <button onclick="home()">Home</button>
+<button onclick="viewClient()">View Client Info</button>
 <button onclick="viewHistory()">View History</button>
 <button onclick="addWorkout()">Add Workout</button>
 <button onclick="updateMeasurements()">Update Measurements</button>
@@ -27,6 +28,9 @@ if (!isset($_SESSION['login']) || !$_SESSION['login']) {
 <script>
 function home(){
 	window.location.href = "Main.php";
+}
+function viewClient(){
+	document.getElementById('section').src = "ClientInfo.php";
 }
 function viewHistory(){
 	document.getElementById('section').src = "Workout.php";
@@ -39,7 +43,7 @@ function updateMeasurements() {
 }
 </script>
 </div>
-<iframe id="section" src="Workout.php"></iframe>
+<iframe id="section" src="ClientInfo.php"></iframe>
 <footer><h3 class="headfoot">Fitness Bros</h3></footer>
 </body>
 </html>

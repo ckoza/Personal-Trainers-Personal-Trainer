@@ -1,3 +1,21 @@
+Skip to content
+This repository
+Search
+Pull requests
+Issues
+Marketplace
+Explore
+ @ckoza
+ Sign out
+ Unwatch 3
+  Star 0  Fork 0 ckoza/Personal-Trainers-Personal-Trainer
+ Code  Issues 0  Pull requests 0  Projects 0  Wiki  Insights  Settings
+Branch: master Find file Copy pathPersonal-Trainers-Personal-Trainer/Main.php
+b758ccf  6 days ago
+@bhudnell1240 bhudnell1240 moved update measurements to client main page
+3 contributors @qwan1 @bhudnell1240 @ckoza
+RawBlameHistory     
+71 lines (64 sloc)  1.85 KB
 <!DOCTYPE html>
 <!-- Author: Carson Koza -->
 <html>
@@ -26,6 +44,7 @@
 <button onclick="newClient()">Add New Client</button>
 <button onclick="calendar()">View Calender</button>
 <button onclick="examples()">View Examples</button>
+<button onclick="diet()">Caloric Intake</button>
 
 <form action="controller.php" method="post">
 <button href="Login.html" name="action" value="logout" onclick="signOut();" name="action" value="logout">Log Out</button>
@@ -44,6 +63,9 @@ function calendar(){
 }
 function examples(){
 	document.getElementById('section').src = "Examples.php";
+}
+function diet(){
+	document.getElementById('section').src = "Diet.php";.
 }
 </script>
 
@@ -68,3 +90,15 @@ function signOut() {
 <footer><h3 class="headfoot">Fitness Bros</h3></footer>
 </body>
 </html>
+© 2017 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Help
+Contact GitHub
+API
+Training
+Shop
+Blog
+About

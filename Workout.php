@@ -44,36 +44,36 @@ div.tab button.active {
 var push = [
             {
                 "date": "2017/10/01",
-            	"FlatBench": 95,
-            	"InclineBench": 55,
+            	"flat_bench": 95,
+            	"incline_bench": 55,
             	"tricep_extention": 50,
             	"arnolds": 35
             },
             {
             	"date": "2017/10/08",
-            	"FlatBench": 105,
-            	"InclineBench": 55,
+            	"flat_bench": 105,
+            	"incline_bench": 55,
             	"tricep_extention": 55,
             	"arnolds": 40
             },
             {
             	"date": "2017/10/15",
-            	"FlatBench": 105,
-            	"InclineBench": 60,
+            	"flat_bench": 115,
+            	"incline_bench": 60,
             	"tricep_extention": 60,
             	"arnolds": 42.5
             },
             {
             	"date": "2017/10/22",
-            	"FlatBench": 115,
-            	"InclineBench": 65,
+            	"flat_bench": 115,
+            	"incline_bench": 65,
             	"tricep_extention": 70,
             	"arnolds": 45
             },
             {
             	"date": "2017/10/29",
-            	"FlatBench": 135,
-            	"InclineBench": 70,
+            	"flat_bench": 135,
+            	"incline_bench": 70,
             	"tricep_extention": 65,
             	"arnolds": 55
             }
@@ -236,6 +236,11 @@ var theDay = "Push_Day";
 var chartData;
 var chart;
 
+var WO1 = "Flat Bench";
+var WO2 = "Incline Bench";
+var WO3 = "Tricep Extension";
+var WO4 = "Arnold Press";
+
 function openCity(evt, whatDay) {
 	theDay=whatDay;
 
@@ -284,7 +289,7 @@ chartData = generateChartData();
         "bullet": "round",
         "bulletBorderThickness": 1,
         "hideBulletsCount": 30,
-        "title": "Flat Bench",
+        "title": WO1,
         "valueField": "one",
 		"fillAlphas": 0
     }, {
@@ -293,7 +298,7 @@ chartData = generateChartData();
         "bullet": "round",
         "bulletBorderThickness": 1,
         "hideBulletsCount": 30,
-        "title": "Incline Bench",
+        "title": WO2,
         "valueField": "two",
 		"fillAlphas": 0
     }, {
@@ -302,7 +307,7 @@ chartData = generateChartData();
         "bullet": "triangleDown",
         "bulletBorderThickness": 1,
         "hideBulletsCount": 30,
-        "title": "Tricep Extension",
+        "title": WO3,
         "valueField": "three",
 		"fillAlphas": 0
     } , {
@@ -311,7 +316,7 @@ chartData = generateChartData();
         "bullet": "triangleUp",
         "bulletBorderThickness": 1,
         "hideBulletsCount": 30,
-        "title": "Arnold Press",
+        "title": WO4,
         "valueField": "four",
 		"fillAlphas": 0
     }],
@@ -375,10 +380,10 @@ function fillTable(ID){
 			 <table id="PullTable">
 			 <tr>
 			 <th>&nbsp;&nbsp; date &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-			 <th>dead_lift<br> (3x6) &nbsp;&nbsp;&nbsp;</th>
+			 <th>Dead Lift<br> (3x6) &nbsp;&nbsp;&nbsp;</th>
 			 <th>Bent Row<br> (2x10) &nbsp;&nbsp;&nbsp; </th>
 			 <th>Barbell Curl<br> (2x15) &nbsp;&nbsp; </th>
-			 <th>lat Pull Down<br> (3x10) &nbsp;&nbsp; </th>
+			 <th>Lat Pull Down<br> (3x10) &nbsp;&nbsp; </th>
 			 </tr>
 			 </table>
 			 `;
@@ -390,7 +395,7 @@ function fillTable(ID){
 			 <table id="LegTable" >
 			 <tr>
 			 <th>&nbsp;&nbsp; date &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-			 <th>squat<br> (2x10) &nbsp;&nbsp;&nbsp;</th>
+			 <th>Squat<br> (2x10) &nbsp;&nbsp;&nbsp;</th>
 			 <th>Leg Press<br> (3x8) &nbsp;&nbsp;&nbsp; </th>
 			 <th>Leg Extentions<br> (2x15) &nbsp;&nbsp; </th>
 			 <th>Leg Curls<br> (2x12) &nbsp;&nbsp; </th>
@@ -476,26 +481,216 @@ function getNextWorkout(day){
 	 case "Push_Day":
 		 var len = push.length ;
 		 toRet[0] = "Next Up";
-		 toRet[1] = round5(parseInt(push[len-1].flat_bench) + parseInt((push[len-1].flat_bench - push[0].flat_bench) / len));
-		 toRet[2] = round5(parseInt(push[len-1].incline_bench) + parseInt((push[len-1].incline_bench - push[0].incline_bench) / len));
-		 toRet[3] = round5(parseInt(push[len-1].tricep_extention) + parseInt((push[len-1].tricep_extention - push[0].tricep_extention) / len));
-		 toRet[4] = round5(parseInt(push[len-1].arnolds) + parseInt((push[len-1].arnolds - push[0].arnolds) / len));
+		 var t = 0;
+		 var f = 0;
+		 var i = 0;
+		 //flat bench
+		 for(i = 0; i < len-1; i++){
+			 if(push[i+1].flat_bench <= push[i].flat_bench)
+			 {
+				 i++;
+				 continue;
+			 }
+			 else
+			 {
+				 t = push[i+1].flat_bench - push[i].flat_bench;
+				 f = (f + t) / 2;
+			 }
+		 }	
+		 toRet[1] = round5(push[len-1].flat_bench + f);
+		 f = 0;
+		 //incline bench
+		 for(i = 0; i < len-1; i++){
+			 console.log("Looking at " + push[i].incline_bench);
+			 if(push[i+1].incline_bench <= push[i].incline_bench)
+			 {
+				 console.log("skip");
+				 i++;
+				 continue;
+			 }
+			 else
+			 {
+				 t = push[i+1].incline_bench - push[i].incline_bench;
+				 console.log("t = " + t + " :: f = " + f);
+				 f = (f + t) / 2;
+				 console.log("f is now " + f);
+			 }
+		 }	
+		 toRet[2] = round5(push[len-1].incline_bench + f);
+		 f = 0;
+		 //tricep extension
+		 for(i = 0; i < len-1; i++){
+			 if(push[i+1].tricep_extention <= push[i].tricep_extention)
+			 {
+				 i++;
+				 continue;
+			 }
+			 else
+			 {
+				 t = push[i+1].tricep_extention - push[i].tricep_extention;
+				 f = (f + t) / 2;
+			 }
+		 }	
+		 toRet[3] = round5(push[len-1].tricep_extention + f);
+		 f = 0;
+		 //arnolds
+		 for(i = 0; i < len-1; i++){
+			 if(push[i+1].arnolds <= push[i].arnolds)
+			 {
+				 i++;
+				 continue;
+			 }
+			 else
+			 {
+				 t = push[i+1].arnolds - push[i].arnolds;
+				 f = (f + t) / 2;
+			 }
+		 }	
+		 toRet[4] = round5(push[len-1].arnolds + f); 
+		 f = 0;
+		// toRet[1] = round5(parseInt(push[len-1].flat_bench) + parseInt((push[len-1].flat_bench - push[0].flat_bench) / len));
+		 //toRet[2] = round5(parseInt(push[len-1].incline_bench) + parseInt((push[len-1].incline_bench - push[0].incline_bench) / len));
+		// toRet[3] = round5(parseInt(push[len-1].tricep_extention) + parseInt((push[len-1].tricep_extention - push[0].tricep_extention) / len));
+		 //toRet[4] = round5(parseInt(push[len-1].arnolds) + parseInt((push[len-1].arnolds - push[0].arnolds) / len));
 		 break;
 	 case "Pull_Day":
+		 f = 0;
 		 var len = pull.length ;
 		 toRet[0] = "Next Up";
-		 toRet[1] = round5(parseInt(pull[len-1].dead_lift) + parseInt((pull[len-1].dead_lift - pull[0].dead_lift) / len));
-		 toRet[2] = round5(parseInt(pull[len-1].bent_rows) + parseInt((pull[len-1].bent_rows - pull[0].bent_rows) / len));
-		 toRet[3] = round5(parseInt(pull[len-1].barbell_curls) + parseInt((pull[len-1].barbell_curls - pull[0].barbell_curls) / len));
-		 toRet[4] = round5(parseInt(pull[len-1].lat) + parseInt((pull[len-1].lat - pull[0].lat) / len));
+		//dead_lift
+		 for(i = 0; i < len-1; i++){
+			 if(pull[i+1].dead_lift <= pull[i].dead_lift)
+			 {
+				 i++;
+				 continue;
+			 }
+			 else
+			 {
+				 t = pull[i+1].dead_lift - pull[i].dead_lift;
+				 console.log(t + " " + f);
+				 f = (f + t) / 2;
+			 }
+		 }	
+		 toRet[1] = round5(pull[len-1].dead_lift + f);
+		 f = 0;
+		 //bent_rows
+		 for(i = 0; i < len-1; i++){
+			 if(pull[i+1].bent_rows <= pull[i].bent_rows)
+			 {
+				 i++;
+				 continue;
+			 }
+			 else
+			 {
+				 t = pull[i+1].bent_rows - pull[i].bent_rows;
+				 f = (f + t) / 2;
+			 }
+		 }	
+		 toRet[2] = round5(pull[len-1].bent_rows + f);
+		 f = 0;
+		 //barbell_curls
+		 for(i = 0; i < len-1; i++){
+			 if(pull[i+1].barbell_curls <= pull[i].barbell_curls)
+			 {
+				 i++;
+				 continue;
+			 }
+			 else
+			 {
+				 t = pull[i+1].barbell_curls - pull[i].barbell_curls;
+				 f = (f + t) / 2;
+			 }
+		 }	
+		 toRet[3] = round5(pull[len-1].barbell_curls + f);
+		 f = 0;
+		 //lat
+		 for(i = 0; i < len-1; i++){
+			 if(pull[i+1].lat <= pull[i].lat)
+			 {
+				 i++;
+				 continue;
+			 }
+			 else
+			 {
+				 t = pull[i+1].lat - pull[i].lat;
+				 f = (f + t) / 2;
+			 }
+		 }	
+		 toRet[4] = round5(pull[len-1].lat + f); 
+		 f = 0;
+		// toRet[1] = round5(parseInt(pull[len-1].dead_lift) + parseInt((pull[len-1].dead_lift - pull[0].dead_lift) / len));
+		// toRet[2] = round5(parseInt(pull[len-1].bent_rows) + parseInt((pull[len-1].bent_rows - pull[0].bent_rows) / len));
+		// toRet[3] = round5(parseInt(pull[len-1].barbell_curls) + parseInt((pull[len-1].barbell_curls - pull[0].barbell_curls) / len));
+		// toRet[4] = round5(parseInt(pull[len-1].lat) + parseInt((pull[len-1].lat - pull[0].lat) / len));
 		 break;
 	 case "Leg_Day":
+		 f = 0;
 		 var len = leg.length ;
 		 toRet[0] = "Next Up";
-		 toRet[1] = round5(parseInt(leg[len-1].squat) + parseInt((leg[len-1].squat - leg[0].squat) / len));
-		 toRet[2] = round5(parseInt(leg[len-1].leg_press) + parseInt((leg[len-1].leg_press - leg[0].leg_press) / len));
-		 toRet[3] = round5(parseInt(leg[len-1].leg_extension) + parseInt((leg[len-1].leg_extension - leg[0].leg_extension) / len));
-		 toRet[4] = round5(parseInt(leg[len-1].leg_curl) + parseInt((leg[len-1].leg_curl - leg[0].leg_curl) / len));
+		//squat
+		 for(i = 0; i < len-1; i++){
+			 if(leg[i+1].squat <= leg[i].squat)
+			 {
+				 i++;
+				 continue;
+			 }
+			 else
+			 {
+				 t = leg[i+1].squat - leg[i].squat;
+				 f = (f + t) / 2;
+			 }
+		 }	
+		 toRet[1] = round5(leg[len-1].squat + f);
+		 f = 0;
+		 //leg_press
+		 for(i = 0; i < len-1; i++){
+			 if(leg[i+1].leg_press <= leg[i].leg_press)
+			 {
+				 i++;
+				 continue;
+			 }
+			 else
+			 {
+				 t = leg[i+1].leg_press - leg[i].leg_press;
+				 f = (f + t) / 2;
+			 }
+		 }	
+		 toRet[2] = round5(leg[len-1].leg_press + f);
+		 f = 0;
+		 //leg_extension
+		 for(i = 0; i < len-1; i++){
+			 if(leg[i+1].leg_extension <= leg[i].leg_extension)
+			 {
+				 i++;
+				 continue;
+			 }
+			 else
+			 {
+				 t = leg[i+1].leg_extension - leg[i].leg_extension;
+				 f = (f + t) / 2;
+			 }
+		 }	
+		 toRet[3] = round5(leg[len-1].leg_extension + f);
+		 f = 0;
+		 //leg_curl
+		 for(i = 0; i < len-1; i++){
+			 if(leg[i+1].leg_curl <= leg[i].leg_curl)
+			 {
+				 i++;
+				 continue;
+			 }
+			 else
+			 {
+				 t = leg[i+1].leg_curl - leg[i].leg_curl;
+				 f = (f + t) / 2;
+			 }
+		 }	
+		 toRet[4] = round5(leg[len-1].leg_curl + f); 
+		 f = 0;
+		// toRet[1] = round5(parseInt(leg[len-1].squat) + parseInt((leg[len-1].squat - leg[0].squat) / len));
+		// toRet[2] = round5(parseInt(leg[len-1].leg_press) + parseInt((leg[len-1].leg_press - leg[0].leg_press) / len));
+		// toRet[3] = round5(parseInt(leg[len-1].leg_extension) + parseInt((leg[len-1].leg_extension - leg[0].leg_extension) / len));
+		// toRet[4] = round5(parseInt(leg[len-1].leg_curl) + parseInt((leg[len-1].leg_curl - leg[0].leg_curl) / len));
 		 break;
 	 default:
 		 break;
@@ -529,12 +724,24 @@ function generateChartData() {
 
     if(theDay == "Push_Day"){
         s = push.length;
+        WO1 = "Flat Bench";      
+        WO2 = "Incline Bench";   
+        WO3 = "Tricep Extension";
+        WO4 = "Arnold Press";    
     }
     else if (theDay == "Pull_Day"){
            s = pull.length;
+           WO1 = "Dead Lift";      
+           WO2 = "Bent Row";   
+           WO3 = "Barbell Curl";
+           WO4 = "Lat Pull Down";    
     }
     else{
            s = leg.length;
+           WO1 = "Squat";      
+           WO2 = "Leg Press";   
+           WO3 = "Leg Extentions";
+           WO4 = "Leg Curls";    
     }
 
         var done;// = push[0].FlatBench;

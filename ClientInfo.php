@@ -19,12 +19,24 @@
 	$clientInfo = $myDatabaseFunctions->getClientInfo($_SESSION['client_id']);
 	
 	// format dates
-	$date1 = DateTime::createFromFormat('Y-m-d', $clientInfo[0]['dob']);
-	$dob = $date1->format('M j, Y');
-	$date2 = DateTime::createFromFormat('Y-m-d', $clientInfo[0]['last_talked']);
-	$last_talked = $date2->format('M j, Y');
-	$date3 = DateTime::createFromFormat('Y-m-d', $clientInfo[0]['last_visit']);
-	$last_visit = $date3->format('M j, Y');
+	$date = DateTime::createFromFormat('Y-m-d', $clientInfo[0]['dob']);
+	if ($date !== false) {
+		$dob = $date->format('M j, Y');
+	} else {
+		$dob = '';
+	}
+	$date = DateTime::createFromFormat('Y-m-d', $clientInfo[0]['last_talked']);
+	if ($date !== false) {
+		$last_talked = $date->format('M j, Y');
+	} else {
+		$last_talked = '';
+	}
+	$date = DateTime::createFromFormat('Y-m-d', $clientInfo[0]['last_visit']);
+	if ($date !== false) {
+		$last_visit = $date->format('M j, Y');
+	} else {
+		$last_visit = '';
+	}
 
 	echo "<h2>" . $clientInfo[0]['first_name'] . " " . $clientInfo[0]['last_name'] . "</h2>"
 ?>

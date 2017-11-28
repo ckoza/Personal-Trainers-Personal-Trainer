@@ -111,25 +111,16 @@ else if ($action === 'deleteClient') {
 }
 // update client
 else if ($action === 'updateClient') {
-	echo "<script>console.log( 'Phone: -" . $_POST['phone_number'] . "-' );</script>";
-	echo "<script>console.log( 'Weight: -" . $_POST['client_weight']. "-' );</script>";
-	echo "<script>console.log( 'Last Talked: -" . $_POST['last_talked']. "-' );</script>";
-	echo "<script>console.log( 'Last Visited: -" . $_POST['last_visit']. "-' );</script>";
-	
 	if ($_POST['phone_number'] !== '') {
-		echo "<script>console.log( 'Updated phone' );</script>";
 		$myDatabaseFunctions->updatePhoneNumber($_SESSION ['client_id'], $_POST['phone_number']);
 	}
 	if ($_POST['client_weight'] !== '') {
-		echo "<script>console.log( 'Updated weight' );</script>";
 		$myDatabaseFunctions->updateWeight($_SESSION ['client_id'], $_POST['client_weight']);
 	}
 	if ($_POST['last_talked'] !== '') {
-		echo "<script>console.log( 'Updated last talked' );</script>";
 		$myDatabaseFunctions->updateLastContacted($_SESSION ['client_id'], $_POST['last_talked']);
 	}
 	if ($_POST['last_visit'] !== '') {
-		echo "<script>console.log( 'Updated last visited' );</script>";
 		$myDatabaseFunctions->updateLastVisited($_SESSION ['client_id'], $_POST['last_visit']);
 	}
 	header ( "Location: ./ClientInfo.php" );

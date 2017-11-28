@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <link href="mainStyle.css" type="text/css" rel="stylesheet" >
-<title>Add a Workout</title>
+<title>Personal Assistants Personal Assistant</title>
 </head>
 <body class="body">
 <?php

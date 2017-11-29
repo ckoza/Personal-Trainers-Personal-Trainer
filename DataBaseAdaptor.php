@@ -7,7 +7,7 @@
 			$db = 'mysql:dbname=PTPA_DATABASE;host=ptpa.c2ihxd5ursch.us-west-1.rds.amazonaws.com:3306';
 			$user = 'root';
 			$password = '12345678';
-			
+
 			try {
 				$this->DB = new PDO ( $db, $user, $password );
 				$this->DB->setAttribute ( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
@@ -62,6 +62,7 @@
 			$stmt->bindParam ( 'dob', $dob );
 			$stmt->bindParam ( 'weight', $weight );
 			$stmt->bindParam ( 'phone', $phone );
+
 			$stmt->execute ();
 		}
 		// deletes client
@@ -77,7 +78,7 @@
 			$stmt->execute ();
 			return $stmt->fetch ( PDO::FETCH_ASSOC );
 		}
-		
+
 		// $trainer is the variable used in the belongs_to field for the client
 		public function getClientsAsArray($id) {
 			$stmt = $this->DB->prepare ( "SELECT * FROM clients WHERE belongs_to_id=:id" );
@@ -113,7 +114,7 @@
 			$stmt = $this->DB->prepare ( "SELECT user_name FROM trainers" );
 			$stmt->execute ();
 			$userArray = $stmt->fetchAll ( PDO::FETCH_COLUMN );
-			
+
 			if (in_array ( $user, $userArray )) {
 				$stmt = $this->DB->prepare ( "SELECT email FROM trainers WHERE user_name=:user" );
 				$stmt->bindParam ( 'user', $user );
@@ -207,8 +208,8 @@
 			$stmt->bindParam ( 'id', $clentID );
 			$stmt->bindParam ( 'date', $date );
 			$stmt->execute ();
-		}		
+		}
 	}
-	
+
 	$myDatabaseFunctions = new DatabaseAdaptor ();
 	?>

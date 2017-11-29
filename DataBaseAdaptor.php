@@ -53,14 +53,15 @@
 			$stmt->execute ();
 		}
 		// adds a client to trainer_id's list
-		public function addClient($id, $first, $last, $sex, $dob, $weight) {
-			$stmt = $this->DB->prepare ( "INSERT INTO clients (belongs_to_id, first_name, last_name, sex, dob, weight) values(:id, :first, :last, :sex, :dob, :weight)" );
+		public function addClient($id, $first, $last, $sex, $dob, $weight, $phone) {
+			$stmt = $this->DB->prepare ( "INSERT INTO clients (belongs_to_id, first_name, last_name, sex, dob, weight, phone_number) values(:id, :first, :last, :sex, :dob, :weight, :phone)" );
 			$stmt->bindParam ( 'id', $id );
 			$stmt->bindParam ( 'first', $first );
 			$stmt->bindParam ( 'last', $last );
 			$stmt->bindParam ( 'sex', $sex );
 			$stmt->bindParam ( 'dob', $dob );
 			$stmt->bindParam ( 'weight', $weight );
+			$stmt->bindParam ( 'phone', $phone );
 			$stmt->execute ();
 		}
 		// deletes client

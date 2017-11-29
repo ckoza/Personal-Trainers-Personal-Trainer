@@ -101,7 +101,7 @@ else if (isset ( $_POST ['username'] ) && isset ( $_POST ['password'] )) {
 else if ($action === 'addClient') {
 	$trainer = $_SESSION ['user'];
 	$getId = $myDatabaseFunctions->getTrainerId ( $trainer );
-	$myDatabaseFunctions->addClient ( $getId ['trainer_id'], $_POST ['first_name'], $_POST ['last_name'], $_POST ['client_sex'], $_POST ['DOB'], $_POST ['client_weight'] );
+	$myDatabaseFunctions->addClient ( $getId ['trainer_id'], $_POST ['first_name'], $_POST ['last_name'], $_POST ['client_sex'], $_POST ['DOB'], $_POST ['client_weight'], $_POST['phone_number'] );
 	header ( "Location: ./Clients.php" );
 }
 // delete client

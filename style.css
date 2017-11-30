@@ -5,6 +5,22 @@
 	width: 1000px;
 }
 
+.addWorkout {
+	background: white;
+	height: 600px;
+	width: 600px; 
+}
+
+table {
+	border-collapse: collapse;
+	border: 1px solid black;
+	background: white;
+}
+
+table, th, td {
+	text-align: center;
+}
+
 html{
     background: rgba(243,226,199,1);
     background: -moz-linear-gradient(left, rgba(243,226,199,1) 0%, rgba(233,212,179,1) 0%, rgba(182,141,76,1) 99%, rgba(193,158,103,1) 100%);

@@ -14,7 +14,15 @@
 	margin: 0;
 }
 
+table {
+	border-collapse: collapse;
+	border: 1px solid black;
+	background: white;
+}
 
+table, th, td {
+	text-align: center;
+}
 
 html{
     background: rgba(243,226,199,1);

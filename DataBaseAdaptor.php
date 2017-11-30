@@ -18,7 +18,7 @@
 		}
 		// add push workout
 		public function addPushWorkout($client_id, $trainer_id, $date, $flat_bench, $incline_bench, $tri_ext, $arnolds) {
-			$stmt = $this->DB->prepare ( "INSERT INTO pull (client_id, trainer_id, date, flat_bench, incline_bench, tricep_extension, arnolds) values(:client_id, :trainer_id, :date, :flat_bench, :incline_bench, :tri_ext, :arnolds)" );
+			$stmt = $this->DB->prepare ( "INSERT INTO push (client_id, trainer_id, date, flat_bench, incline_bench, tricep_extention, arnolds) values(:client_id, :trainer_id, :date, :flat_bench, :incline_bench, :tri_ext, :arnolds)" );
 			$stmt->bindParam ( 'client_id', $client_id );
 			$stmt->bindParam ( 'trainer_id', $trainer_id );
 			$stmt->bindParam ( 'date', $date );
@@ -42,14 +42,14 @@
 		}
 		// add leg workout
 		public function addLegWorkout($client_id, $trainer_id, $date, $squat, $leg_press, $leg_ext, $leg_curl) {
-			$stmt = $this->DB->prepare ( "INSERT INTO pull (client_id, trainer_id, date, squat, leg_press, leg_extension, leg_curl) values(:client_id, :trainer_id, :date, :squat, :leg_press, :leg_ext, :leg_curl)" );
+			$stmt = $this->DB->prepare ( "INSERT INTO leg (client_id, trainer_id, date, squat, leg_press, leg_extension, leg_curl) values(:client_id, :trainer_id, :date, :squat, :leg_press, :leg_ext, :leg_curl)" );
 			$stmt->bindParam ( 'client_id', $client_id );
 			$stmt->bindParam ( 'trainer_id', $trainer_id );
 			$stmt->bindParam ( 'date', $date );
-			$stmt->bindParam ( 'flat_bench', $squat );
-			$stmt->bindParam ( 'incline_bench', $leg_press );
-			$stmt->bindParam ( 'tri_ext', $leg_ext );
-			$stmt->bindParam ( 'arnolds', $leg_curl );
+			$stmt->bindParam ( 'squat', $squat );
+			$stmt->bindParam ( 'leg_press', $leg_press );
+			$stmt->bindParam ( 'leg_ext', $leg_ext );
+			$stmt->bindParam ( 'leg_curl', $leg_curl );
 			$stmt->execute ();
 		}
 		// adds a client to trainer_id's list

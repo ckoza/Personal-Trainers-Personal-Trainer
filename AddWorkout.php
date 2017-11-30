@@ -34,6 +34,6 @@ function leg(){
 }
 </script>
 </div>
-<iframe height = 600px;width = 600px; id="section" src="PushForm.php"></iframe>
+<iframe id="section" src="PushForm.php" class=addWorkout></iframe>
 </body>
 </html>

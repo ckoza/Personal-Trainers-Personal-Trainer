@@ -13,6 +13,7 @@ label {
   border-radius: 1ex;
   padding: 1ex 1em;
   width: 300px;
+  background: white;
 }
 
 input[type=number] {

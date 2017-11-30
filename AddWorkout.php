@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<!-- -<link href="styles.css" type="text/css" rel="stylesheet" >--->
+<meta charset="UTF-8"><link href="style.css" type="text/css" rel="stylesheet" >
 <title>Add a Workout</title>
 </head>
 <body class="body">
@@ -35,6 +34,6 @@ function leg(){
 }
 </script>
 </div>
-<iframe id="section" src="PushForm.php"></iframe>
+<iframe height = 600px;width = 600px; id="section" src="PushForm.php"></iframe>
 </body>
 </html>

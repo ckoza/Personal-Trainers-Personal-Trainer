@@ -205,7 +205,7 @@ var leg = [
   <table id="PullTable">
 <tr>
 <th>&nbsp;&nbsp; date &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-<th>dead_lift<br> (3x6) &nbsp;&nbsp;&nbsp;</th>
+<th>Dead Lift<br> (3x6) &nbsp;&nbsp;&nbsp;</th>
 <th>Bent Row<br> (2x10) &nbsp;&nbsp;&nbsp; </th>
 <th>Barbell Curl<br> (2x15) &nbsp;&nbsp; </th>
 <th>lat Pull Down<br> (3x10) &nbsp;&nbsp; </th>
@@ -218,7 +218,7 @@ var leg = [
   <table id="LegTable" >
 <tr>
 <th>&nbsp;&nbsp; date &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-<th>squat<br>(2x10)</th>
+<th>Squat<br>(2x10)</th>
 <th>Leg Press<br> (3x8) &nbsp;&nbsp;&nbsp; </th>
 <th>Leg Extentions<br> (2x15) &nbsp;&nbsp; </th>
 <th>Leg Curls<br> (2x12) &nbsp;&nbsp; </th>
@@ -456,20 +456,20 @@ function fillTable(ID){
 			ds++;
 		}
 		var next;
-		next = getNextWorkout(ID);
+	//	next = getNextWorkout(ID);
 
-		var row = table.insertRow(s+1);
-    	var cell0 = row.insertCell(0);
-    	var cell1 = row.insertCell(1);
-    	var cell2 = row.insertCell(2);
-    	var cell3 = row.insertCell(3);
-    	var cell4 = row.insertCell(4);
-
-    	cell0.innerHTML = next[0];
-    	cell1.innerHTML = next[1];
-    	cell2.innerHTML = next[2];
-    	cell3.innerHTML = next[3];
-    	cell4.innerHTML = next[4];
+	//	var row = table.insertRow(s+1);
+    //	var cell0 = row.insertCell(0);
+    //	var cell1 = row.insertCell(1);
+    //	var cell2 = row.insertCell(2);
+    //	var cell3 = row.insertCell(3);
+    //	var cell4 = row.insertCell(4);
+    //
+    //	cell0.innerHTML = next[0];
+    //	cell1.innerHTML = next[1];
+    //	cell2.innerHTML = next[2];
+    //	cell3.innerHTML = next[3];
+    //	cell4.innerHTML = next[4];
 }
 </script>
 
@@ -478,84 +478,90 @@ function getNextWorkout(day){
 	var toRet = ["Next", 0,0,0,0];
 
 	switch(day){
-	 case "Push_Day":
-		 var len = push.length ;
-		 toRet[0] = "Next Up";
-		 var t = 0;
-		 var f = 0;
-		 var i = 0;
-		 //flat bench
-		 for(i = 0; i < len-1; i++){
-			 if(push[i+1].flat_bench <= push[i].flat_bench)
-			 {
-				 i++;
-				 continue;
-			 }
-			 else
-			 {
-				 t = push[i+1].flat_bench - push[i].flat_bench;
-				 f = (f + t) / 2;
-			 }
-		 }	
-		 toRet[1] = round5(push[len-1].flat_bench + f);
-		 f = 0;
-		 //incline bench
-		 for(i = 0; i < len-1; i++){
-			 console.log("Looking at " + push[i].incline_bench);
-			 if(push[i+1].incline_bench <= push[i].incline_bench)
-			 {
-				 console.log("skip");
-				 i++;
-				 continue;
-			 }
-			 else
-			 {
-				 t = push[i+1].incline_bench - push[i].incline_bench;
-				 console.log("t = " + t + " :: f = " + f);
-				 f = (f + t) / 2;
-				 console.log("f is now " + f);
-			 }
-		 }	
-		 toRet[2] = round5(push[len-1].incline_bench + f);
-		 f = 0;
-		 //tricep extension
-		 for(i = 0; i < len-1; i++){
-			 if(push[i+1].tricep_extention <= push[i].tricep_extention)
-			 {
-				 i++;
-				 continue;
-			 }
-			 else
-			 {
-				 t = push[i+1].tricep_extention - push[i].tricep_extention;
-				 f = (f + t) / 2;
-			 }
-		 }	
-		 toRet[3] = round5(push[len-1].tricep_extention + f);
-		 f = 0;
-		 //arnolds
-		 for(i = 0; i < len-1; i++){
-			 if(push[i+1].arnolds <= push[i].arnolds)
-			 {
-				 i++;
-				 continue;
-			 }
-			 else
-			 {
-				 t = push[i+1].arnolds - push[i].arnolds;
-				 f = (f + t) / 2;
-			 }
-		 }	
-		 toRet[4] = round5(push[len-1].arnolds + f); 
-		 f = 0;
-		// toRet[1] = round5(parseInt(push[len-1].flat_bench) + parseInt((push[len-1].flat_bench - push[0].flat_bench) / len));
-		 //toRet[2] = round5(parseInt(push[len-1].incline_bench) + parseInt((push[len-1].incline_bench - push[0].incline_bench) / len));
-		// toRet[3] = round5(parseInt(push[len-1].tricep_extention) + parseInt((push[len-1].tricep_extention - push[0].tricep_extention) / len));
-		 //toRet[4] = round5(parseInt(push[len-1].arnolds) + parseInt((push[len-1].arnolds - push[0].arnolds) / len));
+	 case "Push_Day":;
+		 if(push.length != 0){
+			 console.log("innnn");
+			 var len = push.length ;
+			 toRet[0] = "Next Up";
+			 var t = 0;
+			 var f = 0;
+			 var i = 0;
+			 //flat bench
+			 for(i = 0; i < len-1; i++){
+				 if(push[i+1].flat_bench <= push[i].flat_bench)
+				 {
+					 i++;
+					 continue;
+				 }
+				 else
+				 {
+					 t = push[i+1].flat_bench - push[i].flat_bench;
+					 f = (f + t) / 2;
+				 }
+			 }	
+			 toRet[1] = round5(push[len-1].flat_bench + f);
+			 f = 0;
+			 //incline bench
+			 for(i = 0; i < len-1; i++){
+				 console.log("Looking at " + push[i].incline_bench);
+				 if(push[i+1].incline_bench <= push[i].incline_bench)
+				 {
+					 console.log("skip");
+					 i++;
+					 continue;
+				 }
+				 else
+				 {
+					 t = push[i+1].incline_bench - push[i].incline_bench;
+					 console.log("t = " + t + " :: f = " + f);
+					 f = (f + t) / 2;
+					 console.log("f is now " + f);
+				 }
+			 }	
+			 toRet[2] = round5(push[len-1].incline_bench + f);
+			 f = 0;
+			 //tricep extension
+			 for(i = 0; i < len-1; i++){
+				 if(push[i+1].tricep_extention <= push[i].tricep_extention)
+				 {
+					 i++;
+					 continue;
+				 }
+				 else
+				 {
+					 t = push[i+1].tricep_extention - push[i].tricep_extention;
+					 f = (f + t) / 2;
+				 }
+			 }	
+			 toRet[3] = round5(push[len-1].tricep_extention + f);
+			 f = 0;
+			 //arnolds
+			 for(i = 0; i < len-1; i++){
+				 if(push[i+1].arnolds <= push[i].arnolds)
+				 {
+					 i++;
+					 continue;
+				 }
+				 else
+				 {
+					 t = push[i+1].arnolds - push[i].arnolds;
+					 f = (f + t) / 2;
+				 }
+			 }	
+			 toRet[4] = round5(push[len-1].arnolds + f); 
+			 f = 0;
+			// toRet[1] = round5(parseInt(push[len-1].flat_bench) + parseInt((push[len-1].flat_bench - push[0].flat_bench) / len));
+			 //toRet[2] = round5(parseInt(push[len-1].incline_bench) + parseInt((push[len-1].incline_bench - push[0].incline_bench) / len));
+			// toRet[3] = round5(parseInt(push[len-1].tricep_extention) + parseInt((push[len-1].tricep_extention - push[0].tricep_extention) / len));
+			 //toRet[4] = round5(parseInt(push[len-1].arnolds) + parseInt((push[len-1].arnolds - push[0].arnolds) / len));
+		 }
 		 break;
 	 case "Pull_Day":
 		 f = 0;
-		 var len = pull.length ;
+		 var len = pull.length;
+		 if(len == 0){
+			 break;
+		 }
 		 toRet[0] = "Next Up";
 		//dead_lift
 		 for(i = 0; i < len-1; i++){
@@ -626,6 +632,9 @@ function getNextWorkout(day){
 	 case "Leg_Day":
 		 f = 0;
 		 var len = leg.length ;
+		 if(len == 0){
+			 break;
+		 }
 		 toRet[0] = "Next Up";
 		//squat
 		 for(i = 0; i < len-1; i++){

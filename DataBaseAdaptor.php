@@ -4,7 +4,7 @@
 	class DatabaseAdaptor {
 		private $DB;
 		public function __construct() {
-			$db = 'mysql:dbname=PTPA_DATABASE;host=ptpa.c2ihxd5ursch.us-west-1.rds.amazonaws.com:3306';
+			$db = 'mysql:dbname=PTPA_DATABASE;host=restore-the-snapshot-2.c2ihxd5ursch.us-west-1.rds.amazonaws.com:3306';
 			$user = 'root';
 			$password = '12345678';
 
